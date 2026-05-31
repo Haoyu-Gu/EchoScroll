@@ -1,0 +1,11 @@
+{
+  "mir_features": {
+    "tempo": 0.0,
+    "key": "A# major",
+    "spectral_centroid_mean": 383.61263877651754,
+    "spectral_bandwidth_mean": 252.2245689299085,
+    "rms_energy_mean": 0.44264429807662964,
+    "zero_crossing_rate_mean": 0.034045233242753624
+  },
+  "prompt_audio_similarity": -0.04295901954174042
+}

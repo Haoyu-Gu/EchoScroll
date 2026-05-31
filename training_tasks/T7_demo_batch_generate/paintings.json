@@ -1,0 +1,90 @@
+[
+  {
+    "id": "p1",
+    "title": "Cloud Mountains",
+    "artist": "Mi Youren",
+    "dynasty": "Southern Song",
+    "va": [-0.22, -0.55],
+    "word": "calm",
+    "prompt_text": "Chinese ink-wash mountain landscape, mist, calm",
+    "rag_context": "Mi Youren's mi-dian (米点) brushwork; Southern Song literati landscape; aerial perspective with floating mist.",
+    "va_descriptors": "slow tempo, low arousal, sparse texture, soft dynamics, mid register, guqin + xiao"
+  },
+  {
+    "id": "p2",
+    "title": "Poet Lin Bu Wandering in the Moonlight",
+    "artist": "Du Jin",
+    "dynasty": "Ming",
+    "va": [-0.03, 0.11],
+    "word": "tender",
+    "prompt_text": "Chinese figure painting, moonlit walk, tender",
+    "rag_context": "Ming court painter Du Jin; literati hermit subject; reserved brushwork on silk.",
+    "va_descriptors": "moderate tempo, slight motion, moderate texture, mp dynamics, mid register, qin + flute"
+  },
+  {
+    "id": "p3",
+    "title": "Mountain of the Immortals",
+    "artist": "Chen Ruyan",
+    "dynasty": "Yuan",
+    "va": [0.35, -0.05],
+    "word": "tender",
+    "prompt_text": "Chinese landscape, tender, daoist immortals",
+    "rag_context": "Yuan literati blue-green landscape; daoist motifs; refined linework after Zhao Mengfu.",
+    "va_descriptors": "moderate tempo, lifted feel, light texture, mp-mf dynamics, mid-high register, guzheng + dizi"
+  },
+  {
+    "id": "p4",
+    "title": "Buddhist Retreat by Stream and Mountain",
+    "artist": "Juran",
+    "dynasty": "Northern Song",
+    "va": [-0.36, -0.34],
+    "word": "melancholic",
+    "prompt_text": "Northern Song monumental landscape, melancholic, monastic",
+    "rag_context": "Juran's long hemp-fibre strokes (long pi-ma cun); Northern Song monumental height-and-distance landscape.",
+    "va_descriptors": "slow tempo, low arousal, sparse texture, p dynamics, low register, guqin"
+  },
+  {
+    "id": "p5",
+    "title": "After Guo Zhongshu — Landscape",
+    "artist": "Bada Shanren",
+    "dynasty": "Qing",
+    "va": [-0.42, 0.18],
+    "word": "tense",
+    "prompt_text": "Late Ming Qing eccentric ink landscape, tense, sparse",
+    "rag_context": "Bada Shanren (Zhu Da); Qing yimin painter; abrupt brushstrokes carrying veiled political grief.",
+    "va_descriptors": "moderate-fast tempo, restrained energy, sparse staccato texture, mp dynamics, mid register, pipa + xiao"
+  },
+  {
+    "id": "p6",
+    "title": "Streams and Mountains Without End",
+    "artist": "Anonymous",
+    "dynasty": "Northern Song / Jin",
+    "va": [-0.05, 0.45],
+    "word": "joyful",
+    "prompt_text": "Long-handscroll Chinese landscape, joyful, lively brooks",
+    "rag_context": "12th-c. handscroll; classical Northern-Song mountain-and-water composition; layered foreground / mist / distance.",
+    "va_descriptors": "moderate-fast tempo, bright energy, layered texture, mf dynamics, full register, ensemble of guzheng + bamboo flute"
+  },
+  {
+    "id": "p7",
+    "title": "Cold Plum",
+    "artist": "Ni Jing",
+    "dynasty": "Yuan-Ming",
+    "va": [-0.30, -0.42],
+    "word": "sad",
+    "prompt_text": "Chinese ink plum branch, snow, sad",
+    "rag_context": "Yuan-Ming Plum-painting genre; literati symbolism of perseverance through hardship.",
+    "va_descriptors": "very slow tempo, very low arousal, sparse texture, pp dynamics, low register, solo guqin"
+  },
+  {
+    "id": "p8",
+    "title": "Snow Plum",
+    "artist": "Liu Shiru",
+    "dynasty": "Ming",
+    "va": [0.12, -0.50],
+    "word": "calm",
+    "prompt_text": "Chinese ink snow plum, calm, hopeful",
+    "rag_context": "Ming literati plum tradition; snow and blossom contrast as resilience metaphor.",
+    "va_descriptors": "slow tempo, gentle lift, sparse texture, p dynamics, mid register, guqin + soft pipa"
+  }
+]

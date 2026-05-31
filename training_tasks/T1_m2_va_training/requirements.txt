@@ -1,0 +1,9 @@
+torch>=2.2
+transformers>=4.40
+huggingface_hub>=0.23
+pillow>=10
+pandas>=2.1
+numpy>=1.26
+tqdm>=4.66
+scikit-learn>=1.4
+matplotlib>=3.8

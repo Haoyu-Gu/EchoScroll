@@ -1,0 +1,14 @@
+{
+  "tempo": "moderate",
+  "mode": "pentatonic_gong",
+  "meter": "4/4",
+  "register": "mid",
+  "instrumentation": [
+    "guqin",
+    "xiao"
+  ],
+  "texture": "moderate",
+  "articulation": "legato",
+  "dynamics": "mp",
+  "gloss": "Chinese pentatonic palette"
+}

@@ -1,0 +1,10 @@
+# M6 Prompt Translator -- only what THIS module touches.
+# All three backends are optional: rule-based fallback runs with zero deps.
+anthropic>=0.39
+openai>=1.40
+transformers>=4.43
+
+# Visualizations (viz.py)
+matplotlib>=3.7
+seaborn>=0.12
+pandas>=1.5

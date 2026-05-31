@@ -1,0 +1,17 @@
+# Shared base — install once per env
+# 每个任务还会有自己的 requirements.txt 补充包
+
+torch>=2.2.0
+torchvision>=0.17.0
+torchaudio>=2.2.0
+numpy>=1.26
+pandas>=2.1
+tqdm>=4.66
+pillow>=10.0
+huggingface_hub>=0.23
+transformers>=4.40
+accelerate>=0.30
+datasets>=2.18
+soundfile>=0.12
+librosa>=0.10
+matplotlib>=3.8

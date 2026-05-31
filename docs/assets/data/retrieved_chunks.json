@@ -1,0 +1,52 @@
+[
+  {
+    "score": 0.35001426935195923,
+    "text": "Landscape. Zhang Xiong. Hanging scroll; ink and color on paper. Paintings. Qing dynasty (1644–1911). China",
+    "dynasty": "Qing",
+    "painter": "Zhang Xiong",
+    "school": null,
+    "motif": "Paintings",
+    "source": "met:737797",
+    "painting_id": "met_737797"
+  },
+  {
+    "score": 0.3289203643798828,
+    "text": "Huang Shen’s swift painting style is paralleled in his calligraphy. The vertical line in running script echoes the fluid form of the eagle on a tree trunk covered with a twisted vine. A native of Fujian province, Huang came to Yangzhou in 1724 to make his living as a painter. He needed years to develop a style that met the taste of his clients.",
+    "dynasty": "Qing",
+    "painter": "Huang Shen (Chinese, 1687–after 1768)",
+    "school": null,
+    "motif": "Painting",
+    "source": "cleveland:149098",
+    "painting_id": "cle_149098"
+  },
+  {
+    "score": 0.3241319954395294,
+    "text": "Treatise on Painting. Unidentified artist. Handscroll; ink on silk. Paintings. Song dynasty (960–1279) or later. China",
+    "dynasty": "Song",
+    "painter": "Unidentified artist",
+    "school": null,
+    "motif": "Paintings",
+    "source": "met:51532",
+    "painting_id": "met_51532"
+  },
+  {
+    "score": 0.3138298988342285,
+    "text": "The faces are elongated and exaggerated. A few ritual bronzes lend the scene an antique flavor.",
+    "dynasty": "Ming",
+    "painter": "Chen Hongshou (Chinese, 1598/99–1652)",
+    "school": null,
+    "motif": "Painting",
+    "source": "cleveland:137121",
+    "painting_id": "cle_137121"
+  },
+  {
+    "score": 0.2958190441131592,
+    "text": "<br><br>Because of his ability to combine traditional Chinese painting techniques with Western methods of perspective and chiaroscuro, Castiglione went on to be the most favored and honored of the missionary artists who served the early Qing emperors. Throughout his career, in addition to imperial demands for portraits and records of court events, Castiglione continued to paint favored imperial horses.",
+    "dynasty": "Qing",
+    "painter": "Jiao Bingzhen (Chinese, active c. 1670–1726)",
+    "school": null,
+    "motif": "Painting",
+    "source": "cleveland:149590",
+    "painting_id": "cle_149590"
+  }
+]
