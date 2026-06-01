@@ -5,7 +5,8 @@
 >
 > An end-to-end pipeline that maps a Chinese painting to a piece of generated music conditioned on its visual semantics, art-historical context, and emotional geometry — instead of falling back to a flat "Chinese style" tag.
 
-**Live demo:** https://haoyu-gu.github.io/EchoScroll/
+**Live demo (presentation):** https://haoyu-gu.github.io/EchoScroll/
+**Live demo (creation preview, design-school aligned):** https://haoyu-gu.github.io/EchoScroll/creation/
 
 ---
 

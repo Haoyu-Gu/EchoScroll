@@ -1,0 +1,1311 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>EchoScroll · Creation Preview · 创作版（设计学院对齐）</title>
+<meta name="description" content="EchoScroll · 一个基于多模态语义对齐的中国画情感配乐生成系统" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Ma+Shan+Zheng&family=Long+Cang&family=ZCOOL+XiaoWei&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+<!-- ============================================================================
+     Scroll progress indicator
+============================================================================ -->
+<div class="scroll-progress" id="scroll-progress"></div>
+
+<!-- ============================================================================
+     Ink splash decorations (fixed)
+============================================================================ -->
+<svg class="ink-splash s1" viewBox="0 0 200 200" aria-hidden="true">
+  <g fill="#14110f"><path d="M40 100 C20 60, 60 30, 100 50 C 140 65, 160 50, 170 80 C 175 110, 130 130, 110 120 C 80 105, 60 130, 40 100 Z"/>
+  <circle cx="62" cy="138" r="3"/><circle cx="76" cy="148" r="1.6"/><circle cx="158" cy="55" r="1.8"/></g>
+</svg>
+<svg class="ink-splash s2" viewBox="0 0 200 200" aria-hidden="true">
+  <g fill="#2a2521"><path d="M60 90 C40 50, 100 30, 120 70 C 140 110, 90 130, 80 110 C 70 92, 75 100, 60 90 Z"/>
+  <circle cx="30" cy="120" r="4"/><circle cx="146" cy="40" r="2.4"/></g>
+</svg>
+<svg class="ink-splash s3" viewBox="0 0 200 200" aria-hidden="true">
+  <g fill="#524841"><path d="M70 80 Q40 100 80 140 Q 120 160 130 110 Q 145 70 110 65 Q 80 60 70 80 Z"/>
+  </g>
+</svg>
+
+<!-- ============================================================================
+     NAV
+============================================================================ -->
+<nav class="nav" id="nav">
+  <div class="nav-brand">
+    <a href="#hero" class="scroll-logo" aria-label="EchoScroll · 回到首页">
+      <svg class="scroll-mark" viewBox="0 0 48 32" aria-hidden="true">
+        <!-- 左侧卷轴 -->
+        <rect class="axis-end" x="0" y="2" width="3" height="28" rx="1.2"/>
+        <rect class="axis-end" x="3" y="0" width="2" height="32" rx="1"/>
+        <!-- 中央展开的绢面 -->
+        <rect class="silk" x="6" y="6" width="36" height="20" rx="1.5"/>
+        <!-- 山形墨痕 (简笔画) -->
+        <path class="ink-stroke" d="M10 20 L 15 13 L 19 18 L 24 11 L 30 17 L 35 14 L 39 19"/>
+        <!-- 远山轮廓 -->
+        <path class="ink-stroke" d="M12 22 Q 24 19 38 22" opacity="0.5"/>
+        <!-- 右侧卷轴 -->
+        <rect class="axis-end" x="43" y="0" width="2" height="32" rx="1"/>
+        <rect class="axis-end" x="45" y="2" width="3" height="28" rx="1.2"/>
+      </svg>
+      <span class="wordmark">EchoScroll</span>
+    </a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#audiences">题跋</a></li>
+    <li><a href="#vision">愿景</a></li>
+    <li><a href="#pipeline">流程</a></li>
+    <li><a href="#demo">演示</a></li>
+    <li><a href="#modules">模块</a></li>
+    <li><a href="#dataflow">数据流</a></li>
+    <li><a href="#numbers">数据</a></li>
+    <li><a href="#" id="open-about">关于</a></li>
+    <li><a href="../" class="nav-back-link" title="回到 Presentation 版本">▸ Presentation</a></li>
+    <li><button class="btn-concert" id="btn-concert">
+      <span class="dot-blink"></span>演奏厅
+    </button></li>
+  </ul>
+</nav>
+
+<!-- ============================================================================
+     HERO
+============================================================================ -->
+<header class="hero" id="hero">
+  <canvas class="hero-trail" id="hero-trail"></canvas>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <span class="eyebrow">Project · 2026 春 · 第 5 组</span>
+        <h1 class="hero-title">
+          <span class="title-wordmark" aria-label="EchoScroll">
+            <span class="title-letter" data-i="0">E</span><span class="title-letter" data-i="1">c</span><span class="title-letter" data-i="2">h</span><span class="title-letter" data-i="3">o</span><span class="title-letter" data-i="4">S</span><span class="title-letter" data-i="5">c</span><span class="title-letter" data-i="6">r</span><span class="title-letter" data-i="7">o</span><span class="title-letter" data-i="8">l</span><span class="title-letter" data-i="9">l</span>
+          </span>
+          <svg class="title-flourish" viewBox="0 0 320 18" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M5 11 C 35 4 80 16 130 8 C 175 1 225 14 265 7 C 285 4 300 10 315 9"/>
+          </svg>
+        </h1>
+        <p class="subtitle">Where Chinese Painting Listens to Itself.</p>
+        <p class="hero-tag">让一幅中国画自己讲述它的音乐。EchoScroll 把视觉语义、艺术史语境与情感几何对齐到同一个潜在空间，再交给可控的 MusicGen 完成配乐生成。我们不再用"中国风"标签敷衍古画，而是让每一卷纸都得到与它气韵相称的声音。</p>
+        <div class="hero-meta">
+          <span><span class="dot"></span>9 模块 · 7,925 行</span>
+          <span><span class="dot"></span>2,983 张画作</span>
+          <span><span class="dot"></span>132,895 V-A 标签</span>
+          <span><span class="dot"></span>27 张可视化</span>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="scroll-frame scroll-reveal" data-reveal>
+          <span class="reveal-axis left"></span>
+          <span class="reveal-axis right"></span>
+          <span class="axis top"></span>
+          <span class="axis bot"></span>
+          <div class="painting-stack" id="hero-painting-stack">
+            <img class="active" data-pid="p1" src="../assets/paintings/p1_miyouren_cloudy_mountains.jpg" alt="Mi Youren · Cloudy Mountains">
+            <img data-pid="p3" src="../assets/paintings/p3_chenruyan_immortals.jpg" alt="Chen Ruyan · Mountains of the Immortals">
+            <img data-pid="p6" src="../assets/paintings/p6_streams_mountains.jpg" alt="Streams and Mountains without End">
+            <img data-pid="p2" src="../assets/paintings/p2_dujin_poet_lin_bu.jpg" alt="Du Jin · The Poet Lin Bu">
+          </div>
+          <div class="painting-caption">
+            <span class="pc-title" id="hero-caption-title">云山图</span>
+            <span class="pc-meta" id="hero-caption-meta">Mi Youren · 南宋</span>
+          </div>
+          <div class="seal-stamp" aria-label="EchoScroll Seal"><span>回</span><span>声</span><span>画</span><span>乐</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue">
+    <span>展卷</span>
+    <span class="line"></span>
+  </div>
+</header>
+
+<!-- ============================================================================
+     QUOTE BAND
+============================================================================ -->
+<section class="quote-band">
+  <div class="container">
+    <blockquote>
+      画者，画此情；<br>
+      听者，听此意。<br>
+      <em>EchoScroll</em> 让两者第一次在同一个潜在空间相遇。
+    </blockquote>
+    <cite>— from §1.1 of the project proposal</cite>
+  </div>
+</section>
+
+<!-- ============================================================================
+     AUDIENCES · 题跋·因人而读 (for-audience hooks)
+============================================================================ -->
+<section class="audiences" id="audiences">
+  <div class="container">
+    <div class="section-head fade-in">
+      <span class="eyebrow chip"><span class="eb-dot"></span>题跋 · 因人而读</span>
+      <h2 class="hd-2">看官不同，本卷开处亦不同</h2>
+      <svg class="flourish" viewBox="0 0 88 18" aria-hidden="true">
+        <path d="M3 9 Q 25 3 44 10 Q 63 17 85 8"/>
+      </svg>
+      <p class="lead" style="max-width: 680px; margin: 20px auto 0;">
+        EchoScroll 同时被四类看官审视——答辩老师要看完整流水线，策展人要看交互调度，<br>
+        音乐学者要看监督机制，美术学生要看一句话能不能讲清楚。下面四张题跋分别给出最优入口。
+      </p>
+    </div>
+    <div class="audience-grid stagger">
+
+      <div class="audience-card hi">
+        <span class="ac-target">For 答辩老师</span>
+        <span class="ac-time">30 sec</span>
+        <p class="ac-line">
+          从画作 <strong>V-A 几何</strong>到古乐生成的<strong>端到端可解释</strong>流水线——
+          <strong>9 模块、7,925 LOC、27 张可视化</strong>全部本地可点。
+        </p>
+        <span class="ac-seal" aria-hidden="true"><span>开</span><span>题</span><span>评</span><span>之</span></span>
+      </div>
+
+      <div class="audience-card">
+        <span class="ac-target">For 美术馆策展</span>
+        <span class="ac-time">1 min</span>
+        <p class="ac-line">
+          支持 <strong>8 位画家</strong>，跨南宋至清；<strong>6 套乐器</strong>古琴琵琶可换。
+          观众<strong>拖动 V-A 圆环</strong>，乐句即时改向、即时回响。
+        </p>
+        <span class="ac-seal" aria-hidden="true"><span>策</span><span>展</span><span>采</span><span>用</span></span>
+      </div>
+
+      <div class="audience-card">
+        <span class="ac-target">For 古典音乐学者</span>
+        <span class="ac-time">2 min</span>
+        <p class="ac-line">
+          Russell <strong>V-A 二维</strong>对齐 + 五声调式 + 朝代描述符<strong>联合监督</strong>——
+          把"中国风"标签拆成 <strong>8 维可控张量</strong>。
+        </p>
+        <span class="ac-seal" aria-hidden="true"><span>音</span><span>律</span><span>考</span><span>之</span></span>
+      </div>
+
+      <div class="audience-card">
+        <span class="ac-target">For 美术学生</span>
+        <span class="ac-time">5 sec</span>
+        <p class="ac-line">
+          <strong>挑一张画 · 听它的乐。</strong>
+          不再用"国风"二字了事——每一卷纸都得到与其气韵相称的声音。
+        </p>
+        <span class="ac-seal" aria-hidden="true"><span>学</span><span>子</span><span>听</span><span>之</span></span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================================
+     VISION
+============================================================================ -->
+<section id="vision" style="padding-top: 60px;">
+  <div class="container">
+    <div class="section-head fade-in">
+      <span class="eyebrow"><span class="eb-dot"></span>Vision</span>
+      <h2 class="hd-2">让画自己听见</h2>
+      <svg class="flourish" viewBox="0 0 88 18" aria-hidden="true">
+        <path d="M3 9 Q 25 3 44 10 Q 63 17 85 8"/>
+      </svg>
+    </div>
+    <div class="fade-in" style="max-width: 820px; margin: 0 auto; text-align: center;">
+      <p class="lead">
+        中国画的妙处在于多模态——视觉、题跋、印章与诗书互为表里。但今天的数字渠道把它压缩成一张静止缩略图，<em>失去了与观者气息往返的渠道</em>。
+      </p>
+      <p class="lead" style="margin-top: 22px;">
+        <strong style="color: var(--seal-deep);">EchoScroll</strong> 通过 CLIP + Sentence-BERT 编码视觉与文本，对齐到 Russell 二维情感空间，
+        融合艺术史 RAG 检索的文化语境，再用 LoRA 微调的 MusicGen 生成与画作气韵相称的配乐——
+        全过程可拖动、可重生成、可哼唱微调。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================================
+     RESEARCH CONTEXT · 研究语境
+============================================================================ -->
+<section class="context" id="context">
+  <div class="container">
+    <div class="section-head fade-in">
+      <span class="eyebrow">Research Context · §2 of Proposal</span>
+      <h2 class="hd-2">研究语境</h2>
+      <svg class="flourish" viewBox="0 0 88 18" aria-hidden="true">
+        <path d="M3 9 Q 25 3 44 10 Q 63 17 85 8"/>
+      </svg>
+      <p class="lead" style="max-width: 620px; margin: 24px auto 0;">
+        三栏对照看清 EchoScroll 在文献与产业景观中的位置：现状有什么 / 缺什么 / 我们做什么。
+      </p>
+    </div>
+
+    <div class="context-grid stagger">
+      <div class="context-col">
+        <div class="ctx-eyebrow">State of the Field</div>
+        <h3>现状</h3>
+        <p>
+          文本到音乐生成在 2023 之后高速演进：MusicGen / MusicLM / AudioGen / Stable Audio 等已可从一句 prompt 出可用配乐；情感条件化也有 RE-MAST 等 V-A 直接控制的工作。
+        </p>
+        <ul>
+          <li>MusicGen 系列覆盖中等 token-level 多条件生成</li>
+          <li>RE-MAST 实证连续 V-A 控制优于离散标签</li>
+          <li>Suno / Udio 商业闭源，质量好但不可控不可解释</li>
+          <li>image-to-music 工作多停在视觉风格迁移层</li>
+        </ul>
+      </div>
+      <div class="context-col gap">
+        <div class="ctx-eyebrow">The Gap</div>
+        <h3><span class="accent">差距</span></h3>
+        <p>
+          没有任何系统把"中国画的画派/题跋/构图/留白"作为一等的条件化信号；现有方案处理"中国风"基本停留在 prompt 里塞几个国乐乐器名的标签级敷衍。
+        </p>
+        <ul>
+          <li>没有针对中国画的 V-A 训练数据</li>
+          <li>没有可拖动可编辑的 V-A 用户接口</li>
+          <li>艺术史 RAG 几乎无人做（仅 GalleryGPT 间接相关）</li>
+          <li>评测维度缺"文化适配 cultural appropriateness"</li>
+        </ul>
+      </div>
+      <div class="context-col us">
+        <div class="ctx-eyebrow">Our Approach</div>
+        <h3>EchoScroll 的方法</h3>
+        <p>
+          把"画意 → 情感几何 → 音乐参数"明确为一条可观察、可干预、可解释的三段管线，而不是黑盒一阶端到端；中国画的艺术史语境通过 RAG 注入。
+        </p>
+        <ul>
+          <li>多模态 z + V-A 投影：两步可视、可拖动</li>
+          <li>BGE-M3 + FAISS 检索 1129 条策展文 chunk</li>
+          <li>LoRA 微调 MusicGen 走中国民乐音色</li>
+          <li>评测含 cultural appropriateness 单独打分</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================================
+     PIPELINE
+============================================================================ -->
+<section class="pipeline" id="pipeline">
+  <div class="container">
+    <div class="section-head fade-in">
+      <span class="eyebrow"><span class="eb-dot"></span>Pipeline · §3.2 of Proposal</span>
+      <h2 class="hd-2">五步而成</h2>
+      <svg class="flourish" viewBox="0 0 88 18" aria-hidden="true">
+        <path d="M3 9 Q 25 3 44 10 Q 63 17 85 8"/>
+      </svg>
+    </div>
+    <div class="pipeline-flow stagger">
+      <div class="pipe-step active">
+        <div class="pipe-num">壹</div>
+        <h4>感知 · Perception</h4>
+        <div class="pipe-meta">M1 · CLIP/ViT + BGE-M3</div>
+        <p>把画作图像、题跋诗文与元数据（朝代/画家/画派）分别编码，再融合成 768 维多模态向量 z。</p>
+      </div>
+      <div class="pipe-arrow">
+        <svg viewBox="0 0 56 36" preserveAspectRatio="none">
+          <path d="M2 18 C 14 6, 30 30, 48 16" />
+          <path class="head" d="M44 11 L 52 16 L 44 21" />
+        </svg>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-num">贰</div>
+        <h4>映射 · Projection</h4>
+        <div class="pipe-meta">M2 · MLP → V-A</div>
+        <p>两层 MLP 把 z 投到 Russell 圆环 (v, a) ∈ [-1, 1]²，用 MSE + NT-Xent 联合监督。</p>
+      </div>
+      <div class="pipe-arrow">
+        <svg viewBox="0 0 56 36" preserveAspectRatio="none">
+          <path d="M2 18 C 18 30, 30 6, 48 18" />
+          <path class="head" d="M44 13 L 52 18 L 44 23" />
+        </svg>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-num">叁</div>
+        <h4>检索 · Retrieval</h4>
+        <div class="pipe-meta">M3 · BGE-M3 + FAISS</div>
+        <p>从艺术史语料库（1,129 chunks）取回 top-k 文化语境，避免泛"中国风"。</p>
+      </div>
+      <div class="pipe-arrow">
+        <svg viewBox="0 0 56 36" preserveAspectRatio="none">
+          <path d="M2 18 C 14 10, 32 28, 48 14" />
+          <path class="head" d="M44 9 L 52 14 L 44 19" />
+        </svg>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-num">肆</div>
+        <h4>生成 · Generation</h4>
+        <div class="pipe-meta">M4 · MusicGen + LoRA</div>
+        <p>V-A、口语指令、RAG 上下文共同条件化 MusicGen-small；LoRA 适配中国民乐。</p>
+      </div>
+      <div class="pipe-arrow">
+        <svg viewBox="0 0 56 36" preserveAspectRatio="none">
+          <path d="M2 18 C 18 6, 28 30, 48 20" />
+          <path class="head" d="M44 15 L 52 20 L 44 25" />
+        </svg>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-num">伍</div>
+        <h4>编辑 · Refine</h4>
+        <div class="pipe-meta">M5/M6/M7 · Edit + Hum</div>
+        <p>段位替换、相位声码器变速、哼唱旋律对齐——把生成结果交还用户继续打磨。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================================
+     LIVE DEMO
+============================================================================ -->
+<section class="demo" id="demo">
+  <div class="container">
+    <div class="section-head fade-in">
+      <span class="eyebrow"><span class="eb-dot"></span>Interactive Showcase</span>
+      <h2 class="hd-2">展卷而听</h2>
+      <svg class="flourish" viewBox="0 0 88 18" aria-hidden="true">
+        <path d="M3 9 Q 25 3 44 10 Q 63 17 85 8"/>
+      </svg>
+      <p class="lead" style="max-width: 620px; margin: 24px auto 0;">
+        点选一张古画，看 EchoScroll 如何读出它的情感几何，并把这份感受转译为可控的音乐参数与一段配乐。<br>
+        亦可拖动 V-A 圆环上的红点，亲手聆听这片潜在空间的声响。
+      </p>
+    </div>
+
+    <div class="demo-stage">
+
+      <!-- LEFT · painting -->
+      <div class="painting-panel">
+        <div class="painting-frame" id="painting-frame">
+          <img id="painting-img" src="../assets/paintings/p2_dujin_poet_lin_bu.jpg" alt="">
+          <div class="seal-corner"><span>回</span><span>声</span></div>
+        </div>
+        <div class="painting-meta">
+          <div class="title" id="painting-title">林逋月夜行吟</div>
+          <div class="sub" id="painting-sub">Du Jin · The Poet Lin Bu Wandering in the Moonlight</div>
+          <div class="tags" id="painting-tags">
+            <span class="tag dyn">明 · Ming dynasty</span>
+            <span class="tag">人物</span>
+            <span class="tag">水墨设色</span>
+          </div>
+        </div>
+        <div class="painting-thumbs" id="painting-thumbs"></div>
+      </div>
+
+      <!-- MIDDLE · V-A circumplex -->
+      <div class="va-panel">
+        <div class="va-panel-head">
+          <h3>情感几何 V-A</h3>
+          <span class="mono" id="va-source">M2 ▸ z → ℝ²</span>
+        </div>
+        <div class="va-circumplex" id="va-circumplex">
+          <svg viewBox="-110 -110 220 220" xmlns="http://www.w3.org/2000/svg" id="va-svg">
+            <defs>
+              <radialGradient id="qGreen" cx="50%" cy="50%" r="60%">
+                <stop offset="0%" stop-color="#5e8466" stop-opacity="0.30"/>
+                <stop offset="100%" stop-color="#5e8466" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="qBlue" cx="50%" cy="50%" r="60%">
+                <stop offset="0%" stop-color="#2a6e96" stop-opacity="0.28"/>
+                <stop offset="100%" stop-color="#2a6e96" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="qRed" cx="50%" cy="50%" r="60%">
+                <stop offset="0%" stop-color="#b8302a" stop-opacity="0.28"/>
+                <stop offset="100%" stop-color="#b8302a" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="qGold" cx="50%" cy="50%" r="60%">
+                <stop offset="0%" stop-color="#b88f4e" stop-opacity="0.28"/>
+                <stop offset="100%" stop-color="#b88f4e" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <!-- 4 quadrant ink-wash tints -->
+            <circle cx="55" cy="-55" r="80" fill="url(#qGreen)" />
+            <circle cx="-55" cy="-55" r="80" fill="url(#qRed)" />
+            <circle cx="-55" cy="55" r="80" fill="url(#qBlue)" />
+            <circle cx="55" cy="55" r="80" fill="url(#qGold)" />
+            <!-- unit circle -->
+            <circle cx="0" cy="0" r="100" fill="none" stroke="#524841" stroke-width="0.8" />
+            <circle cx="0" cy="0" r="66"  fill="none" stroke="#a8a39e" stroke-width="0.3" stroke-dasharray="2 3"/>
+            <circle cx="0" cy="0" r="33"  fill="none" stroke="#a8a39e" stroke-width="0.3" stroke-dasharray="2 3"/>
+            <!-- axes -->
+            <line x1="-110" y1="0" x2="110" y2="0" stroke="#524841" stroke-width="0.6"/>
+            <line x1="0" y1="-110" x2="0" y2="110" stroke="#524841" stroke-width="0.6"/>
+            <!-- labels -->
+            <text x="0" y="-118" text-anchor="middle" font-size="10" font-family="Cormorant Garamond" fill="#2a2521" font-style="italic">arousal +</text>
+            <text x="0" y="125" text-anchor="middle" font-size="10" font-family="Cormorant Garamond" fill="#2a2521" font-style="italic">arousal −</text>
+            <text x="118" y="3" text-anchor="start" font-size="10" font-family="Cormorant Garamond" fill="#2a2521" font-style="italic">valence +</text>
+            <text x="-118" y="3" text-anchor="end" font-size="10" font-family="Cormorant Garamond" fill="#2a2521" font-style="italic">valence −</text>
+            <!-- cardinal mood words -->
+            <text x="70" y="-72" text-anchor="middle" font-size="8.5" fill="#5e8466" opacity="0.9">excited</text>
+            <text x="-70" y="-72" text-anchor="middle" font-size="8.5" fill="#b8302a" opacity="0.9">tense</text>
+            <text x="-70" y="78" text-anchor="middle" font-size="8.5" fill="#2a6e96" opacity="0.9">depressed</text>
+            <text x="70" y="78" text-anchor="middle" font-size="8.5" fill="#b88f4e" opacity="0.9">calm</text>
+            <!-- 8 painting dots -->
+            <g id="va-dots"></g>
+            <!-- draggable point -->
+            <g id="va-pin">
+              <circle r="11" fill="#b8302a" opacity="0.20" />
+              <circle r="5.5" fill="#b8302a" />
+              <circle r="2.2" fill="#fff" />
+            </g>
+          </svg>
+          <div class="va-dot-tip" id="va-dot-tip"></div>
+        </div>
+        <div class="va-readout">
+          <div class="word" id="va-word">tender</div>
+          <div class="coord" id="va-coord">v = -0.03  ·  a = +0.11</div>
+        </div>
+        <div class="va-hint">拖动红点 · 8 张画作落在圆环上 · 实时合成正弦预览</div>
+        <div class="va-controls">
+          <button class="va-btn" id="btn-preview">▸ Preview</button>
+          <button class="va-btn primary" id="btn-regen">重生成</button>
+        </div>
+      </div>
+
+      <!-- RIGHT · descriptors + audio + RAG -->
+      <div class="output-panel">
+
+        <div class="descriptors">
+          <div class="descriptors-head">
+            <h3>音乐参数</h3>
+            <span class="mono">M6 · 8-slot rule</span>
+          </div>
+          <div class="slot-grid" id="slot-grid">
+            <div class="slot"><div class="slot-label">tempo</div><div class="slot-value" data-slot="tempo">—</div></div>
+            <div class="slot"><div class="slot-label">mode</div><div class="slot-value" data-slot="mode">—</div></div>
+            <div class="slot"><div class="slot-label">meter</div><div class="slot-value" data-slot="meter">—</div></div>
+            <div class="slot"><div class="slot-label">register</div><div class="slot-value" data-slot="register">—</div></div>
+            <div class="slot"><div class="slot-label">texture</div><div class="slot-value" data-slot="texture">—</div></div>
+            <div class="slot"><div class="slot-label">dynamics</div><div class="slot-value" data-slot="dynamics">—</div></div>
+            <div class="slot"><div class="slot-label">articulation</div><div class="slot-value" data-slot="articulation">—</div></div>
+            <div class="slot full"><div class="slot-label">instrumentation</div><div class="slot-value" data-slot="instrumentation">—</div></div>
+          </div>
+        </div>
+
+        <div class="audio-card">
+          <div class="audio-card-head">
+            <h3>配乐</h3>
+            <span class="mono">M4 · MusicGen mock</span>
+          </div>
+          <div class="audio-controls">
+            <button class="play-btn" id="play-btn">
+              <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6zm8-14v14h4V5z"/></svg>
+            </button>
+            <div class="waveform" id="waveform"></div>
+            <div class="audio-time" id="audio-time">0:00 / 0:08</div>
+          </div>
+          <div class="audio-variants">
+            <!-- Buttons populated dynamically per-painting by renderAudioVariants() -->
+          </div>
+          <div class="real-audio-note" id="real-audio-note" hidden></div>
+          <audio id="audio-el" preload="auto"></audio>
+        </div>
+
+        <div class="rag-card">
+          <div class="rag-card-head">
+            <h3>艺术史检索</h3>
+            <span class="mono">M3 · top-3 of 1129 chunks</span>
+          </div>
+          <div class="rag-list" id="rag-list"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================================
+     CASE STUDY · 案例研究
+============================================================================ -->
+<section class="case-study" id="case-study">
+  <div class="container">
+    <div class="section-head fade-in">
+      <span class="eyebrow"><span class="eb-dot"></span>Case Study · One Painting, Full Trace</span>
+      <h2 class="hd-2">案例研究</h2>
+      <svg class="flourish" viewBox="0 0 88 18" aria-hidden="true">
+        <path d="M3 9 Q 25 3 44 10 Q 63 17 85 8"/>
+      </svg>
+      <p class="lead" style="max-width: 540px; margin: 24px auto 0;">
+        以 <em>《林逋月夜行吟》</em> 为例，把 EchoScroll pipeline 的每一步全部摊开看：从画作输入到 V-A 投影、艺术史检索、再到 MusicGen 条件 prompt 的完整轨迹。
+      </p>
+    </div>
+
+    <div class="case-banner fade-in">
+      <div class="img-wrap scroll-reveal" id="case-img-wrap" data-reveal>
+        <span class="reveal-axis left"></span>
+        <span class="reveal-axis right"></span>
+        <img src="../assets/paintings/p2_dujin_poet_lin_bu.jpg" alt="The Poet Lin Bu Wandering in the Moonlight">
+
+        <!-- 故宫《清明上河图》风格的标记点示例：创作版将支持在画上直接打点 -->
+        <button class="reticle" style="top: 42%; left: 36%;"
+                aria-label="标记点：月光 · 高 V"
+                data-rp-title="月光下的诗人"
+                data-rp-v="+0.20" data-rp-a="-0.10"
+                data-rp-note="林逋独行夜咏梅 — 局部画意触发了 V-A 偏右下、xiao 主奏的 prompt 子句。"
+        ><span class="pulse"></span></button>
+        <button class="reticle" style="top: 67%; left: 58%;"
+                aria-label="标记点：寒梅 · 低 A"
+                data-rp-title="寒梅初绽"
+                data-rp-v="-0.05" data-rp-a="-0.42"
+                data-rp-note="梅枝 + 月色让该区域 arousal 下降；M5 编辑层在此段位插入 0.4× BPM。"
+        ><span class="pulse"></span></button>
+
+        <!-- 故宫风注释面板（默认隐藏，点击 reticle 出现） -->
+        <div class="reticle-panel" id="case-reticle-panel">
+          <span class="rp-eyebrow">Inline annotation · 画上标注</span>
+          <div class="rp-title" id="case-rp-title">月光下的诗人</div>
+          <div class="rp-row"><span>valence</span><strong id="case-rp-v">+0.20</strong></div>
+          <div class="rp-row"><span>arousal</span><strong id="case-rp-a">-0.10</strong></div>
+          <p class="rp-note" id="case-rp-note">林逋独行夜咏梅 — 局部画意触发了 V-A 偏右下、xiao 主奏的 prompt 子句。</p>
+          <p class="rp-hint">Creation demo · inspired by 故宫博物院《清明上河图》交互</p>
+        </div>
+      </div>
+      <div>
+        <h3>林逋月夜行吟<br><span style="font-family:var(--serif-en);font-style:italic;font-weight:400;color:var(--ink-mid);font-size:24px;">The Poet Lin Bu Wandering in the Moonlight</span></h3>
+        <div class="artist">Du Jin · 杜堇 (1446–c. 1519)</div>
+        <p class="lead">
+          一幅明朝故事画——北宋诗人林逋"梅妻鹤子"，月夜独行咏梅。画里有人物、月光、寒梅、苍松；情绪是"清逸而带淡淡的孤", 在 Russell 圆环上略偏右下。
+        </p>
+        <p class="lead">
+          下面是 EchoScroll 把这种"画里有月，画外有诗"的气息转译成具体音乐参数的完整过程：
+        </p>
+        <div class="case-meta">
+          <span class="tag dyn">明 · Ming</span>
+          <span class="tag">人物</span>
+          <span class="tag">水墨设色</span>
+          <span class="tag">Cleveland · CC0</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-trace stagger">
+      <div class="case-step">
+        <div class="ct-num">① INPUT</div>
+        <h4>多模态输入</h4>
+        <div class="ct-mini-svg">
+          <svg viewBox="0 0 200 110">
+            <rect x="20" y="20" width="60" height="80" rx="4" fill="#ebe1cb" stroke="#b88f4e" stroke-width="1"/>
+            <text x="50" y="65" text-anchor="middle" font-size="9" font-family="Noto Serif SC">img</text>
+            <rect x="90" y="32" width="90" height="14" rx="2" fill="#faf6ec" stroke="#a8a39e" stroke-dasharray="2 2"/>
+            <text x="135" y="42" text-anchor="middle" font-size="8" font-family="JetBrains Mono" fill="#524841">text · meta</text>
+            <rect x="90" y="54" width="90" height="14" rx="2" fill="#faf6ec" stroke="#a8a39e" stroke-dasharray="2 2"/>
+            <text x="135" y="64" text-anchor="middle" font-size="8" font-family="JetBrains Mono" fill="#524841">artist · dynasty</text>
+            <rect x="90" y="76" width="90" height="14" rx="2" fill="#faf6ec" stroke="#a8a39e" stroke-dasharray="2 2"/>
+            <text x="135" y="86" text-anchor="middle" font-size="8" font-family="JetBrains Mono" fill="#524841">school · medium</text>
+          </svg>
+        </div>
+<pre><span class="k">"title"</span>: <span class="s">"林逋月夜行吟"</span>,
+<span class="k">"artist"</span>: <span class="s">"Du Jin"</span>,
+<span class="k">"dynasty"</span>: <span class="s">"明"</span>,
+<span class="k">"medium"</span>: <span class="s">"ink+color"</span>,
+<span class="k">"license"</span>: <span class="s">"CC0"</span></pre>
+        <div class="ct-foot">M1 ▸ raw image + metadata</div>
+      </div>
+
+      <div class="case-step">
+        <div class="ct-num">② ENCODER</div>
+        <h4>多模态融合</h4>
+        <div class="ct-mini-svg">
+          <div class="encoder-stripes">
+            <div class="encoder-stripe" style="width: 92%"></div>
+            <div class="encoder-stripe" style="width: 85%"></div>
+            <div class="encoder-stripe" style="width: 78%"></div>
+            <div class="encoder-stripe" style="width: 94%"></div>
+            <div class="encoder-stripe" style="width: 82%"></div>
+            <div class="encoder-stripe" style="width: 70%"></div>
+            <div class="encoder-stripe" style="width: 88%"></div>
+            <div class="encoder-stripe" style="width: 76%"></div>
+            <div class="encoder-stripe" style="width: 81%"></div>
+          </div>
+        </div>
+<pre><span class="k">"z_dim"</span>: <span class="n">768</span>,
+<span class="k">"e_img"</span>: <span class="s">"CLIP-L/14"</span>,
+<span class="k">"e_txt"</span>: <span class="s">"BGE-M3"</span>,
+<span class="k">"e_meta"</span>: <span class="s">"hash"</span>,
+<span class="k">"‖z‖₂"</span>: <span class="n">22.4</span></pre>
+        <div class="ct-foot">M1 ▸ fused multimodal z ∈ ℝ^768</div>
+      </div>
+
+      <div class="case-step">
+        <div class="ct-num">③ V-A</div>
+        <h4>情感投影 + RAG</h4>
+        <div class="ct-mini-svg">
+          <svg viewBox="-55 -55 110 110">
+            <circle r="50" fill="none" stroke="#524841" stroke-width="0.6"/>
+            <line x1="-50" y1="0" x2="50" y2="0" stroke="#a8a39e" stroke-width="0.4"/>
+            <line x1="0" y1="-50" x2="0" y2="50" stroke="#a8a39e" stroke-width="0.4"/>
+            <path d="M0,0 L50,0 A50,50 0 0,1 0,50 Z" fill="#b88f4e" opacity="0.18" />
+            <path d="M0,0 L0,50 A50,50 0 0,1 -50,0 Z" fill="#2a6e96" opacity="0.18" />
+            <path d="M0,0 L-50,0 A50,50 0 0,1 0,-50 Z" fill="#b8302a" opacity="0.18" />
+            <path d="M0,0 L0,-50 A50,50 0 0,1 50,0 Z" fill="#5e8466" opacity="0.18" />
+            <circle cx="-3" cy="-11" r="3.5" fill="#b8302a"/>
+            <circle cx="-3" cy="-11" r="1.3" fill="#fff"/>
+          </svg>
+        </div>
+<pre><span class="k">"valence"</span>: <span class="n">-0.03</span>,
+<span class="k">"arousal"</span>: <span class="n">+0.11</span>,
+<span class="k">"word"</span>: <span class="s">"tender"</span>,
+<span class="k">"rag_top1"</span>: <span class="s">"Garden of</span>
+              <span class="s">Solitary Enjoyment"</span></pre>
+        <div class="ct-foot">M2 ▸ V-A · M3 ▸ top-3 RAG chunks</div>
+      </div>
+
+      <div class="case-step">
+        <div class="ct-num">④ OUTPUT</div>
+        <h4>音乐参数 + 配乐</h4>
+        <div class="ct-mini-svg">
+          <svg viewBox="0 0 200 110">
+            <g fill="#b8302a" opacity="0.85">
+              <rect x="10" y="50" width="3" height="20" rx="1"/>
+              <rect x="16" y="40" width="3" height="40" rx="1"/>
+              <rect x="22" y="32" width="3" height="56" rx="1"/>
+              <rect x="28" y="38" width="3" height="44" rx="1"/>
+              <rect x="34" y="46" width="3" height="28" rx="1"/>
+              <rect x="40" y="28" width="3" height="64" rx="1"/>
+              <rect x="46" y="44" width="3" height="32" rx="1"/>
+              <rect x="52" y="50" width="3" height="20" rx="1"/>
+              <rect x="58" y="36" width="3" height="48" rx="1"/>
+              <rect x="64" y="42" width="3" height="36" rx="1"/>
+              <rect x="70" y="48" width="3" height="24" rx="1"/>
+              <rect x="76" y="40" width="3" height="40" rx="1"/>
+              <rect x="82" y="50" width="3" height="20" rx="1"/>
+              <rect x="88" y="46" width="3" height="28" rx="1"/>
+              <rect x="94" y="52" width="3" height="16" rx="1"/>
+            </g>
+            <g fill="#524841" opacity="0.55">
+              <rect x="104" y="46" width="3" height="28" rx="1"/>
+              <rect x="110" y="50" width="3" height="20" rx="1"/>
+              <rect x="116" y="44" width="3" height="32" rx="1"/>
+              <rect x="122" y="48" width="3" height="24" rx="1"/>
+              <rect x="128" y="52" width="3" height="16" rx="1"/>
+              <rect x="134" y="50" width="3" height="20" rx="1"/>
+              <rect x="140" y="46" width="3" height="28" rx="1"/>
+              <rect x="146" y="54" width="3" height="12" rx="1"/>
+              <rect x="152" y="50" width="3" height="20" rx="1"/>
+              <rect x="158" y="48" width="3" height="24" rx="1"/>
+              <rect x="164" y="52" width="3" height="16" rx="1"/>
+              <rect x="170" y="50" width="3" height="20" rx="1"/>
+              <rect x="176" y="54" width="3" height="12" rx="1"/>
+              <rect x="182" y="56" width="3" height="8" rx="1"/>
+              <rect x="188" y="58" width="3" height="4" rx="1"/>
+            </g>
+          </svg>
+        </div>
+<pre><span class="k">"tempo"</span>: <span class="s">"moderate"</span>,
+<span class="k">"mode"</span>: <span class="s">"pentatonic_gong"</span>,
+<span class="k">"inst"</span>: [<span class="s">"guqin"</span>, <span class="s">"xiao"</span>],
+<span class="k">"texture"</span>: <span class="s">"moderate"</span>,
+<span class="k">"duration"</span>: <span class="n">8.0</span>s</pre>
+        <div class="ct-foot">M6 ▸ 8-slot · M4 ▸ MusicGen mock</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================================
+     PAINTINGS ATLAS · 画作图谱
+============================================================================ -->
+<section class="atlas" id="atlas">
+  <div class="container">
+    <div class="section-head fade-in">
+      <span class="eyebrow">8 Paintings × 4 Dynasties</span>
+      <h2 class="hd-2">画作图谱</h2>
+      <svg class="flourish" viewBox="0 0 88 18" aria-hidden="true">
+        <path d="M3 9 Q 25 3 44 10 Q 63 17 85 8"/>
+      </svg>
+      <p class="lead" style="max-width: 580px; margin: 24px auto 0;">
+        从北宋《溪山兰若》到清初八大山人，跨越七百年的八张画作各自在 V-A 圆环里有自己的"情感坐标"——点击任一卡看完整 pipeline 的数据轨迹。
+      </p>
+    </div>
+    <div class="atlas-grid stagger" id="atlas-grid">
+      <!-- populated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================================
+     MODULE SHOWCASE
+============================================================================ -->
+<section class="modules" id="modules">
+  <div class="container">
+    <div class="section-head fade-in">
+      <span class="eyebrow">9 Modules · CPU-friendly demos</span>
+      <h2 class="hd-2">模块陈列</h2>
+      <svg class="flourish" viewBox="0 0 88 18" aria-hidden="true">
+        <path d="M3 9 Q 25 3 44 10 Q 63 17 85 8"/>
+      </svg>
+      <p class="lead" style="max-width: 540px; margin: 24px auto 0;">
+        每一格对应一个独立模块：可单独安装、可单独跑 demo、可单独生成图。<br>
+        <em>悬停 hover 卡片：图自动轮播 3 张。点击：灯箱全图。</em>
+      </p>
+    </div>
+    <div class="module-grid stagger" id="module-grid"></div>
+  </div>
+</section>
+
+<!-- ============================================================================
+     DATAFLOW · 模块连接图
+============================================================================ -->
+<section class="dataflow" id="dataflow">
+  <div class="container">
+    <div class="section-head fade-in">
+      <span class="eyebrow">Module Topology · 9 nodes · 14 edges</span>
+      <h2 class="hd-2">模块连接图</h2>
+      <svg class="flourish" viewBox="0 0 88 18" aria-hidden="true">
+        <path d="M3 9 Q 25 3 44 10 Q 63 17 85 8"/>
+      </svg>
+      <p class="lead" style="max-width: 660px; margin: 24px auto 0;">
+        每个模块在系统里扮演的角色：输入怎么进、产物怎么流、谁喂给谁。<br>
+        <em style="color: var(--seal-deep);">将鼠标悬停在任一节点上</em>，看它的进/出边亮起来。
+      </p>
+    </div>
+
+    <div class="df-stage fade-in">
+      <svg id="df-svg" class="df-svg" viewBox="0 0 1280 680" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <marker id="df-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 Z" fill="#786c5f"/>
+          </marker>
+          <marker id="df-arrow-active" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 Z" fill="#b8302a"/>
+          </marker>
+        </defs>
+
+        <!-- M8 wrapper -->
+        <rect class="m8-wrap" x="60" y="100" width="1160" height="560" rx="20"
+              fill="none" stroke="#b88f4e" stroke-width="1.2" stroke-dasharray="6 4" opacity="0.45"/>
+        <g class="m8-label">
+          <rect x="80" y="86" width="320" height="26" rx="13" fill="#faf6ec" stroke="#b88f4e" stroke-width="0.8"/>
+          <text x="240" y="103" text-anchor="middle" font-family="Cormorant Garamond" font-style="italic" font-size="13" fill="#786c5f" letter-spacing="0.08em">M8 · Frontend + Backend orchestration</text>
+        </g>
+
+        <!-- INPUTS row (y=30 - 70) -->
+        <g class="df-node input" data-id="in-img" transform="translate(110,30)">
+          <rect class="node-bg" width="120" height="40" rx="8"/>
+          <text class="node-name" x="60" y="25">画作 · image</text>
+        </g>
+        <g class="df-node input" data-id="in-text" transform="translate(250,30)">
+          <rect class="node-bg" width="120" height="40" rx="8"/>
+          <text class="node-name" x="60" y="25">文字 · text</text>
+        </g>
+        <g class="df-node input" data-id="in-meta" transform="translate(390,30)">
+          <rect class="node-bg" width="120" height="40" rx="8"/>
+          <text class="node-name" x="60" y="25">元数据 · meta</text>
+        </g>
+        <g class="df-node input" data-id="in-prompt" transform="translate(670,30)">
+          <rect class="node-bg" width="120" height="40" rx="8"/>
+          <text class="node-name" x="60" y="25">口语 · prompt</text>
+        </g>
+        <g class="df-node input" data-id="in-hum" transform="translate(820,30)">
+          <rect class="node-bg" width="120" height="40" rx="8"/>
+          <text class="node-name" x="60" y="25">哼唱 · hum</text>
+        </g>
+
+        <!-- input → encoder edges -->
+        <path class="df-edge" data-from="in-img"  data-to="m1" d="M170,70 C 170,110 300,120 300,150"/>
+        <path class="df-edge" data-from="in-text" data-to="m1" d="M310,70 L 310,150"/>
+        <path class="df-edge" data-from="in-meta" data-to="m1" d="M450,70 C 450,110 320,120 320,150"/>
+        <path class="df-edge" data-from="in-prompt" data-to="m6" d="M730,70 L 730,150"/>
+        <path class="df-edge" data-from="in-hum"  data-to="m7" d="M880,70 L 880,150"/>
+
+        <!-- ENCODERS row (y=150 - 210) -->
+        <g class="df-node cat-perception" data-id="m1" transform="translate(230,150)">
+          <rect class="node-bg" width="160" height="60" rx="10"/>
+          <rect class="node-stripe" width="160" height="3" fill="currentColor"/>
+          <text class="node-id" x="80" y="24">M1 · ENCODER</text>
+          <text class="node-name" x="80" y="46">多模态编码</text>
+        </g>
+        <g class="df-node cat-interaction" data-id="m6" transform="translate(650,150)">
+          <rect class="node-bg" width="160" height="60" rx="10"/>
+          <rect class="node-stripe" width="160" height="3" fill="currentColor"/>
+          <text class="node-id" x="80" y="24">M6 · TRANSLATOR</text>
+          <text class="node-name" x="80" y="46">口语翻译</text>
+        </g>
+        <g class="df-node cat-interaction" data-id="m7" transform="translate(800,150)">
+          <rect class="node-bg" width="160" height="60" rx="10"/>
+          <rect class="node-stripe" width="160" height="3" fill="currentColor"/>
+          <text class="node-id" x="80" y="24">M7 · HUMMING</text>
+          <text class="node-name" x="80" y="46">哼唱交互</text>
+        </g>
+
+        <!-- M1 → M2 / M3 edges -->
+        <path class="df-edge" data-from="m1" data-to="m2" d="M280,210 C 280,260 220,260 220,300"/>
+        <text class="df-edge-label" x="218" y="262">z · 768d</text>
+
+        <path class="df-edge" data-from="m1" data-to="m3" d="M340,210 C 340,260 410,260 410,300"/>
+        <text class="df-edge-label" x="386" y="262">z · query</text>
+
+        <!-- PROJECTIONS row (y=300 - 360) -->
+        <g class="df-node cat-perception" data-id="m2" transform="translate(140,300)">
+          <rect class="node-bg" width="160" height="60" rx="10"/>
+          <rect class="node-stripe" width="160" height="3" fill="currentColor"/>
+          <text class="node-id" x="80" y="24">M2 · V-A</text>
+          <text class="node-name" x="80" y="46">情感投影</text>
+        </g>
+        <g class="df-node cat-perception" data-id="m3" transform="translate(330,300)">
+          <rect class="node-bg" width="160" height="60" rx="10"/>
+          <rect class="node-stripe" width="160" height="3" fill="currentColor"/>
+          <text class="node-id" x="80" y="24">M3 · RAG</text>
+          <text class="node-name" x="80" y="46">艺术史检索</text>
+        </g>
+
+        <!-- All projections + helpers → M4 edges -->
+        <path class="df-edge" data-from="m2" data-to="m4" d="M220,360 C 220,420 540,420 540,460"/>
+        <text class="df-edge-label" x="270" y="412">V-A · (v,a)</text>
+
+        <path class="df-edge" data-from="m3" data-to="m4" d="M410,360 C 410,420 540,420 540,460"/>
+        <text class="df-edge-label" x="430" y="412">RAG · top-3</text>
+
+        <path class="df-edge" data-from="m6" data-to="m4" d="M730,210 C 730,360 560,400 540,460"/>
+        <text class="df-edge-label" x="690" y="368">8-slot ctrl</text>
+
+        <path class="df-edge" data-from="m7" data-to="m4" d="M880,210 C 880,400 600,420 540,460"/>
+        <text class="df-edge-label" x="800" y="392">F0 + key</text>
+
+        <!-- M4 GENERATOR (y=460 - 530) -->
+        <g class="df-node cat-generation" data-id="m4" transform="translate(440,460)">
+          <rect class="node-bg" width="200" height="70" rx="12"/>
+          <rect class="node-stripe" width="200" height="3" fill="currentColor"/>
+          <text class="node-id" x="100" y="26">M4 · GENERATOR</text>
+          <text class="node-name" x="100" y="50">MusicGen · 音乐生成</text>
+        </g>
+
+        <!-- M4 → M5 -->
+        <path class="df-edge" data-from="m4" data-to="m5" d="M540,530 L 540,580"/>
+        <text class="df-edge-label" x="588" y="558">audio · 32kHz</text>
+
+        <!-- M4 → M9 -->
+        <path class="df-edge" data-from="m4" data-to="m9" d="M640,495 C 760,495 850,500 900,500"/>
+        <text class="df-edge-label" x="760" y="488">audio + meta</text>
+
+        <!-- M5 EDITOR (y=580 - 640) -->
+        <g class="df-node cat-interaction" data-id="m5" transform="translate(440,580)">
+          <rect class="node-bg" width="200" height="60" rx="10"/>
+          <rect class="node-stripe" width="200" height="3" fill="currentColor"/>
+          <text class="node-id" x="100" y="24">M5 · EDITING</text>
+          <text class="node-name" x="100" y="46">编辑层（beat / BPM / splice）</text>
+        </g>
+
+        <!-- M5 → out-audio -->
+        <path class="df-edge" data-from="m5" data-to="out-audio" d="M640,610 C 740,610 720,615 760,615"/>
+        <text class="df-edge-label" x="700" y="600">WAV</text>
+
+        <!-- OUTPUT -->
+        <g class="df-node out" data-id="out-audio" transform="translate(760,595)">
+          <rect class="node-bg" width="160" height="40" rx="8" fill="#b8302a" stroke="#8c1f1c" stroke-width="1.4"/>
+          <text class="node-name" x="80" y="25" fill="#faf6ec" font-weight="500">▸ 配乐 · audio out</text>
+        </g>
+
+        <!-- M9 EVALUATOR (right side) -->
+        <g class="df-node cat-evaluation" data-id="m9" transform="translate(900,470)">
+          <rect class="node-bg" width="160" height="60" rx="10"/>
+          <rect class="node-stripe" width="160" height="3" fill="currentColor"/>
+          <text class="node-id" x="80" y="24">M9 · EVAL</text>
+          <text class="node-name" x="80" y="46">评测（FAD / VA / MIR）</text>
+        </g>
+
+        <!-- M9 dashed reference back to image (ground truth) -->
+        <path class="df-edge df-edge-ref" data-from="in-img" data-to="m9"
+              d="M230,50 C 800,50 1000,360 980,470" stroke-dasharray="4 3"/>
+        <text class="df-edge-label" x="980" y="68">ground-truth painting V-A</text>
+      </svg>
+
+      <div class="df-legend">
+        <div class="legend-item"><span class="dot" style="background:var(--paper-warm); border:1px dashed var(--paper-deep)"></span>用户输入</div>
+        <div class="legend-item"><span class="dot" style="background:var(--stone-blue)"></span>感知 Perception</div>
+        <div class="legend-item"><span class="dot" style="background:var(--stone-green)"></span>交互 Interaction</div>
+        <div class="legend-item"><span class="dot" style="background:var(--seal)"></span>生成 Generation</div>
+        <div class="legend-item"><span class="dot" style="background:var(--gold-soft)"></span>评测 Evaluation</div>
+        <div class="legend-item"><span class="dot" style="background:#faf6ec; border:1px dashed var(--gold)"></span>M8 wrapper（不参与数据流，提供 API 与 UI）</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================================
+     PROJECT TIMELINE · 项目时间线
+============================================================================ -->
+<section class="timeline" id="timeline">
+  <div class="container">
+    <div class="section-head fade-in">
+      <span class="eyebrow">Project Journey · 2026 Spring</span>
+      <h2 class="hd-2">项目时间线</h2>
+      <svg class="flourish" viewBox="0 0 88 18" aria-hidden="true">
+        <path d="M3 9 Q 25 3 44 10 Q 63 17 85 8"/>
+      </svg>
+    </div>
+    <div class="timeline-track stagger">
+      <div class="timeline-item done">
+        <div class="ti-date">2026 · 04 · 13 — 04 · 20</div>
+        <h4>P1 · 选题与架构</h4>
+        <p>确定 EchoScroll 的核心命题：把中国画作为多模态语义对象而非视觉缩略图；与设计学院对接前端方向；完成数据集调研与下载方案。</p>
+        <div class="ti-meta"><span>▸ M1 架构冻结</span><span>▸ 14 数据集列表</span></div>
+      </div>
+      <div class="timeline-item done">
+        <div class="ti-date">2026 · 04 · 27 — 05 · 18</div>
+        <h4>P2 · 模型骨架 + 开题答辩</h4>
+        <p>9 个独立模块代码同步推进；Image→V-A / Text→V-A 骨架建立；27 张可视化全部就位；5/8 开题报告答辩。</p>
+        <div class="ti-meta"><span>▸ 7,925 LOC</span><span>▸ 27 figures</span><span>▸ Proposal v8</span></div>
+      </div>
+      <div class="timeline-item active">
+        <div class="ti-date">2026 · 05 · 25 — 06 · 01</div>
+        <h4>P3 · 后端 + 中期 demo</h4>
+        <p>FastAPI 8 端点接入；Affect→Music backend 拿到首批可听样本；M3 RAG 索引上线；中期演示。</p>
+        <div class="ti-meta"><span>▸ 1,129 RAG chunks</span><span>▸ 132,895 V-A 标签</span><span>▸ Demo v1</span></div>
+      </div>
+      <div class="timeline-item">
+        <div class="ti-date">2026 · 06 · 08 — 06 · 15</div>
+        <h4>P4 · 集成 + 最终答辩</h4>
+        <p>段位编辑、style transfer、Concert UI 集成；声乐子系统 demo bonus；6/15 最终答辩与演示。</p>
+        <div class="ti-meta"><span>▸ Beat editor</span><span>▸ Vocal-learning bonus</span><span>▸ Final defence</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================================
+     NUMBERS
+============================================================================ -->
+<section class="numbers" id="numbers">
+  <div class="container">
+    <div class="section-head fade-in">
+      <span class="eyebrow"><span class="eb-dot"></span>By the numbers</span>
+      <h2 class="hd-2">硬数字</h2>
+      <svg class="flourish" viewBox="0 0 88 18" aria-hidden="true">
+        <path d="M3 9 Q 25 3 44 10 Q 63 17 85 8"/>
+      </svg>
+    </div>
+    <div class="number-grid stagger">
+      <div class="number-cell">
+        <div class="big" data-count="7925">0</div>
+        <div class="label">Lines of Code</div>
+        <div class="sub">Python + TS/React</div>
+        <svg class="underline" viewBox="0 0 36 6" aria-hidden="true">
+          <path d="M2 4 Q 10 1 18 4 Q 26 7 34 3"/>
+        </svg>
+      </div>
+      <div class="number-cell">
+        <div class="big" data-count="27">0</div>
+        <div class="label">Figures</div>
+        <div class="sub">9 modules × 3 viz</div>
+        <svg class="underline" viewBox="0 0 36 6" aria-hidden="true">
+          <path d="M2 4 Q 10 1 18 4 Q 26 7 34 3"/>
+        </svg>
+      </div>
+      <div class="number-cell">
+        <div class="big" data-count="2983">0</div>
+        <div class="label">Paintings</div>
+        <div class="sub">Met + Cleveland + zqman</div>
+        <svg class="underline" viewBox="0 0 36 6" aria-hidden="true">
+          <path d="M2 4 Q 10 1 18 4 Q 26 7 34 3"/>
+        </svg>
+      </div>
+      <div class="number-cell">
+        <div class="big" data-count="132895">0</div>
+        <div class="label">V-A Labels</div>
+        <div class="sub">EmoArt 132K 全集</div>
+        <svg class="underline" viewBox="0 0 36 6" aria-hidden="true">
+          <path d="M2 4 Q 10 1 18 4 Q 26 7 34 3"/>
+        </svg>
+      </div>
+      <div class="number-cell">
+        <div class="big" data-count="1129">0</div>
+        <div class="label">RAG Chunks</div>
+        <div class="sub">Met + Cleveland 策展文</div>
+        <svg class="underline" viewBox="0 0 36 6" aria-hidden="true">
+          <path d="M2 4 Q 10 1 18 4 Q 26 7 34 3"/>
+        </svg>
+      </div>
+      <div class="number-cell">
+        <div class="big" data-count="3193">0</div>
+        <div class="label">Audio Captions</div>
+        <div class="sub">古筝 + 二胡 + 13-dim</div>
+        <svg class="underline" viewBox="0 0 36 6" aria-hidden="true">
+          <path d="M2 4 Q 10 1 18 4 Q 26 7 34 3"/>
+        </svg>
+      </div>
+      <div class="number-cell">
+        <div class="big" data-count="13">0<sup>GB</sup></div>
+        <div class="label">Data on Disk</div>
+        <div class="sub">14 个数据集</div>
+        <svg class="underline" viewBox="0 0 36 6" aria-hidden="true">
+          <path d="M2 4 Q 10 1 18 4 Q 26 7 34 3"/>
+        </svg>
+      </div>
+      <div class="number-cell">
+        <div class="big" data-count="500">0<sup>¥</sup></div>
+        <div class="label">Budget</div>
+        <div class="sub">≤ 数据/硬件/标注</div>
+        <svg class="underline" viewBox="0 0 36 6" aria-hidden="true">
+          <path d="M2 4 Q 10 1 18 4 Q 26 7 34 3"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================================
+     TECH STACK
+============================================================================ -->
+<section class="stack" id="stack">
+  <div class="container">
+    <div class="section-head fade-in">
+      <span class="eyebrow">Built with</span>
+      <h2 class="hd-2">技术栈</h2>
+      <svg class="flourish" viewBox="0 0 88 18" aria-hidden="true">
+        <path d="M3 9 Q 25 3 44 10 Q 63 17 85 8"/>
+      </svg>
+    </div>
+    <div class="stack-cloud fade-in">
+      <span class="tech-pill cat-vision">CLIP-ViT-L/14</span>
+      <span class="tech-pill cat-vision">BGE-M3</span>
+      <span class="tech-pill cat-vision">Sentence-BERT</span>
+      <span class="tech-pill cat-audio">MusicGen-small</span>
+      <span class="tech-pill cat-audio">LoRA / PEFT</span>
+      <span class="tech-pill cat-audio">librosa</span>
+      <span class="tech-pill cat-audio">pYIN / CREPE</span>
+      <span class="tech-pill cat-audio">Phase Vocoder</span>
+      <span class="tech-pill cat-audio">Krumhansl-Schmuckler</span>
+      <span class="tech-pill cat-audio">chroma-CQT DTW</span>
+      <span class="tech-pill cat-lang">Anthropic Claude</span>
+      <span class="tech-pill cat-lang">Qwen2.5</span>
+      <span class="tech-pill cat-frame">FAISS</span>
+      <span class="tech-pill cat-frame">PyTorch 2.1</span>
+      <span class="tech-pill cat-frame">FastAPI</span>
+      <span class="tech-pill cat-frame">React + Vite</span>
+      <span class="tech-pill cat-frame">TypeScript</span>
+      <span class="tech-pill cat-frame">WaveSurfer.js</span>
+      <span class="tech-pill cat-data">EmoArt-130k</span>
+      <span class="tech-pill cat-data">DEAM</span>
+      <span class="tech-pill cat-data">CCMusic Suite</span>
+      <span class="tech-pill cat-data">Met / Cleveland CC0</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================================
+     FOOTER
+============================================================================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">回声 · EchoScroll</div>
+        <p>An end-to-end multimodal system that conditions music generation on Chinese painting affect.<br>
+        Submitted for the Synthetic Design of AI Systems course, 华南理工大学未来技术学院, 2026 spring.</p>
+      </div>
+      <div>
+        <h5>Team · 第 5 组</h5>
+        <ul>
+          <li>顾昊瑜  · Lead</li>
+          <li>钱乐凯  · Multimodal</li>
+          <li>李德涵  · Symbolic + LLM</li>
+          <li>宋知衡  · Front-end</li>
+          <li>李天翔  · Editing</li>
+          <li>张翔睿  · UI / UX</li>
+          <li>田益泽  · Brand / Visual</li>
+        </ul>
+      </div>
+      <div>
+        <h5>Advisor</h5>
+        <ul>
+          <li>Lin Shu</li>
+          <li>Dan Liao</li>
+        </ul>
+        <h5 style="margin-top: 20px;">Repo</h5>
+        <p>echoscroll_code.zip · 204 KB · 108 files</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>SHA-256: 4c98db95…923f3917aeec4</span>
+      <span>© 2026 · Cooked with 朱印, 墨 &amp; transformers</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================================
+     LIGHTBOX (figure detail viewer)
+============================================================================ -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" id="lightbox-close">✕</button>
+    <h3 id="lb-title">—</h3>
+    <p class="lead" id="lb-desc">—</p>
+    <div class="lightbox-figs" id="lb-figs"></div>
+  </div>
+</div>
+
+<!-- ============================================================================
+     CONCERT MODE overlay
+============================================================================ -->
+<div class="concert-overlay" id="concert-overlay">
+  <div class="concert-progress-bar"><div class="fill" id="concert-fill"></div></div>
+  <button class="concert-close" id="concert-close">✕</button>
+  <div class="concert-stage">
+    <div class="concert-painting">
+      <div id="concert-img-stack" style="position:absolute;inset:0;"></div>
+      <div class="seal-corner"><span>回</span><span>声</span></div>
+    </div>
+    <div class="concert-info">
+      <div class="index" id="concert-index">演 · 0 / 8</div>
+      <div class="title" id="concert-title">—</div>
+      <div class="sub" id="concert-sub">—</div>
+      <div class="va-line" id="concert-va">v = 0  ·  a = 0  ·  —</div>
+      <div class="desc" id="concert-desc">—</div>
+      <div class="concert-mini-circle">
+        <svg viewBox="-110 -110 220 220" id="concert-mini-svg">
+          <circle r="100" fill="none" stroke="rgba(245,239,226,0.32)" stroke-width="1"/>
+          <line x1="-100" y1="0" x2="100" y2="0" stroke="rgba(245,239,226,0.18)" stroke-width="0.6"/>
+          <line x1="0" y1="-100" x2="0" y2="100" stroke="rgba(245,239,226,0.18)" stroke-width="0.6"/>
+          <g id="concert-pin">
+            <circle r="11" fill="#b8302a" opacity="0.30"/>
+            <circle r="5" fill="#b8302a"/>
+            <circle r="2" fill="#faf6ec"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <audio id="concert-audio" preload="auto"></audio>
+</div>
+
+<!-- ============================================================================
+     CODE TRANSPARENCY PANEL
+============================================================================ -->
+<div class="code-panel" id="code-panel">
+  <button class="code-panel-toggle" id="code-panel-toggle" aria-label="Toggle code panel">
+    <span class="icon-open">⌘</span>
+    <span class="icon-close">✕</span>
+  </button>
+  <div class="code-panel-head">JSON state · live</div>
+  <button class="code-panel-copy" id="code-panel-copy" style="display:none">copy</button>
+  <div class="code-panel-body">
+    <div class="code-panel-tabs">
+      <div class="code-panel-tab active" data-tab="painting">painting</div>
+      <div class="code-panel-tab" data-tab="va">va</div>
+      <div class="code-panel-tab" data-tab="descriptors">descriptors</div>
+      <div class="code-panel-tab" data-tab="rag">rag</div>
+    </div>
+    <pre id="code-panel-pre">—</pre>
+  </div>
+</div>
+
+<!-- ============================================================================
+     ABOUT MODAL
+============================================================================ -->
+<div class="modal-overlay about-modal" id="about-modal">
+  <div class="modal-content">
+    <button class="modal-close" data-close="about-modal">✕</button>
+    <div class="about-body">
+      <div class="about-head">
+        <div class="seal-big"><span>回</span><span>声</span><span>画</span><span>乐</span></div>
+        <h2>EchoScroll · 回声</h2>
+        <div class="tagline">Where Chinese Painting Listens to Itself.</div>
+      </div>
+
+      <div class="about-section">
+        <h3>项目本旨</h3>
+        <p>中国画的妙处在于多模态——视觉、题跋、印章、诗书互为表里。但今天的数字渠道把它压缩成一张静止缩略图，失去了与观者气息往返的渠道。EchoScroll 把"画 → 情感 → 音乐"明确为一条<strong>可观察、可干预、可解释</strong>的三段式 pipeline，用 V-A 二维情感几何作为人机共同语言。</p>
+      </div>
+
+      <div class="about-section">
+        <h3>为什么这件事值得做</h3>
+        <p>从技术看，它把多模态语义、艺术史 RAG、可控音频生成三个研究脉络拧到一起；从文化看，它给"中国风" AI 配乐这一被劣化处理的应用场景提供一个有交互、有解释、有审计性的替代方案。</p>
+      </div>
+
+      <div class="about-section">
+        <h3>底层架构</h3>
+        <p>9 个独立模块（M1 多模态编码 / M2 V-A / M3 RAG / M4 MusicGen+LoRA / M5 编辑 / M6 口语翻译 / M7 哼唱 / M8 前后端 / M9 评测）通过共用的 V-A 与音乐描述符 schema 串联；后端 FastAPI，前端 React + WaveSurfer。</p>
+        <p>数据层包括 Met / Cleveland 的 CC0 中国画 ~3K 张、EmoArt-130k 全集 V-A 标签、CCMusic 中国民乐 ~80h、自标 V-A pilot 2K 张。</p>
+      </div>
+
+      <div class="about-section">
+        <h3>引用</h3>
+        <div class="citation">
+          <button class="cite-copy" id="cite-copy">copy</button>
+<pre id="bibtex-block">@misc{gu2026echoscroll,
+  title  = {EchoScroll: Painting-Conditioned Music Generation
+            with V-A Affective Geometry and Art-History RAG},
+  author = {Gu, Haoyu and Qian, Lekai and Li, Dehan and Song, Zhiheng
+            and Li, Tianxiang and Zhang, Xiangrui and Tian, Yize},
+  year   = {2026},
+  note   = {SCUT Future Tech, AI Systems Synthetic Design course}
+}</pre>
+        </div>
+      </div>
+
+      <div class="about-buttons">
+        <button class="primary" data-close="about-modal">浏览演示</button>
+        <button class="secondary" onclick="window.open('http://localhost:8080#case-study')">查看案例</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================================
+     PAINTING DETAIL MODAL
+============================================================================ -->
+<div class="modal-overlay" id="painting-detail-modal">
+  <div class="modal-content">
+    <button class="modal-close" data-close="painting-detail-modal">✕</button>
+    <div class="pd-body" id="pd-body">
+      <!-- populated by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================================
+     IMAGE ZOOM MODAL
+============================================================================ -->
+<div class="modal-overlay zoom-modal" id="zoom-modal">
+  <div class="modal-content">
+    <button class="modal-close" data-close="zoom-modal">✕</button>
+    <img id="zoom-img" src="" alt="">
+    <div class="zoom-caption" id="zoom-caption">点击图片切换 1× / 1.6×</div>
+  </div>
+</div>
+
+<!-- ============================================================================
+     RAG MODAL · full retrieved chunk
+============================================================================ -->
+<div class="modal-overlay rag-modal" id="rag-modal">
+  <div class="modal-content">
+    <button class="modal-close" data-close="rag-modal">✕</button>
+    <div class="rag-body">
+      <div class="rag-head">
+        <div class="score-circle" id="rag-modal-score">—</div>
+        <div>
+          <h3>RAG Retrieved Chunk</h3>
+          <div class="src" id="rag-modal-src">—</div>
+        </div>
+      </div>
+      <div class="rag-text" id="rag-modal-text">—</div>
+      <div class="rag-meta-grid">
+        <div class="rag-meta-item">
+          <div class="label">embedding</div>
+          <div class="value">BAAI/bge-m3 · 1024-d</div>
+        </div>
+        <div class="rag-meta-item">
+          <div class="label">index</div>
+          <div class="value">FAISS · IndexFlatIP</div>
+        </div>
+        <div class="rag-meta-item">
+          <div class="label">corpus size</div>
+          <div class="value">1,129 chunks</div>
+        </div>
+        <div class="rag-meta-item">
+          <div class="label">similarity</div>
+          <div class="value">cosine · L2-normalised</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
