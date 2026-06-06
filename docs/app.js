@@ -32,9 +32,9 @@ Mood: wistful, tender, reflective, slow, flowing
 BPM: ~50  ·  No vocals, no pop beat, no orchestral climax
 Mode: pentatonic yu  ·  Instruments: guqin, xiao, dizi, pipa, light percussion`,
     rag: [
-      { score: 0.42, text: 'Mi Youren built upon his father Mi Fu\'s "ink-dot mountains" style, dissolving solid form into atmospheric Song-dynasty mist.' },
-      { score: 0.39, text: 'Southern Song literati painters favored intimate fan and album leaves over monumental compositions; brush economy carries the entire mood.' },
-      { score: 0.36, text: 'Wet-ink "Mi-style mountains" prioritize atmospheric perspective over solid form, evoking calm dissolution.' },
+      { score: 0.42, text: '米友仁承其父米芾"米点皴"之法，化山石实形于宋人烟岚水气之中。' },
+      { score: 0.39, text: '南宋文人偏好册页扇面之"小品"，弃巨幅而取笔精，以省笔承全局气韵。' },
+      { score: 0.36, text: '湿笔"米家山水"重云气远近之势，轻丘壑实写——意在化形为虚、收摄于淡远。' },
     ],
   },
   {
@@ -45,9 +45,9 @@ Mode: pentatonic yu  ·  Instruments: guqin, xiao, dizi, pipa, light percussion`
     tags: ['人物', '设色', '故事画'],
     va: [-0.03, 0.11], audio: 'gua4_bi.mp3',
     rag: [
-      { score: 0.35, text: 'Landscape with goats. Late Ming dynasty. Hanging scroll; ink and color on silk.' },
-      { score: 0.33, text: 'Du Jin specialized in figure painting that animated Song literati anecdotes within Ming aesthetic conventions.' },
-      { score: 0.31, text: 'Garden of Solitary Enjoyment refers to a Song-era site built in 1073 by the statesman Sima Guang as a metaphor for cultivated retreat.' },
+      { score: 0.35, text: '明晚期立轴，绢本设色——山间点缀群羊，远景皴法松秀，近景人物拈衣徐行。' },
+      { score: 0.33, text: '杜堇善人物画，以明人笔意复活宋代文人故实之神：林逋"梅妻鹤子"即其常题。' },
+      { score: 0.31, text: '"独乐园"原为北宋熙宁六年（1073）司马光所筑园林，后世取其退隐自娱之意为画题。' },
     ],
   },
   {
@@ -58,9 +58,9 @@ Mode: pentatonic yu  ·  Instruments: guqin, xiao, dizi, pipa, light percussion`
     tags: ['青绿山水', '神仙', '元代'],
     va: [0.35, -0.05], audio: 'gua2_xu.mp3',
     rag: [
-      { score: 0.38, text: 'Yuan literati painters fused Daoist immortal-realm imagery with elevated, archaic blue-green palette to express otherworldly ideals.' },
-      { score: 0.34, text: 'Chen Ruyan, a Yuan Four Masters circle painter, treats brushwork as scholarly self-expression rather than mere depiction.' },
-      { score: 0.32, text: 'Daoist mountain pavilions and pine groves in Yuan painting cite a long tradition of "可游可居" — wandering and dwelling.' },
+      { score: 0.38, text: '元代文人画家融道家仙境意象于古雅青绿设色之中，以寄方外之思。' },
+      { score: 0.34, text: '陈汝言为"元四家"周边画师，其笔墨重文人襟抱之抒发，非止于状物。' },
+      { score: 0.32, text: '元画中道家山亭松林承"可游可居"之古训——画外有寄身游观、栖隐其间之意。' },
     ],
   },
   {
@@ -71,9 +71,9 @@ Mode: pentatonic yu  ·  Instruments: guqin, xiao, dizi, pipa, light percussion`
     tags: ['山水', '寺庙', '苍润'],
     va: [-0.36, -0.34], audio: 'gua1_shi.mp3',
     rag: [
-      { score: 0.41, text: 'Juran continued Dong Yuan\'s southern-school lineage, characterized by long hemp-fiber texture strokes and dense vegetation.' },
-      { score: 0.37, text: 'Buddhist mountain retreats in early Northern Song painting figure renunciation; monumental compositions express cosmic order.' },
-      { score: 0.34, text: 'Hemp-fiber cun strokes (披麻皴) build soft, accumulating mountain mass typical of southern Tang to Northern Song masters.' },
+      { score: 0.41, text: '巨然承董源南派之绪，以披麻长皴与丛林密茂为本色，开后世江南山水一脉。' },
+      { score: 0.37, text: '北宋初山水中之佛寺兰若寓出尘之意；宏阔构图则现宇宙秩序，所谓"山高水长"。' },
+      { score: 0.34, text: '披麻皴层层堆叠，造柔润蓄势之山体——南唐至北宋诸大家所宗，自巨然始定其法。' },
     ],
   },
   {
@@ -98,9 +98,9 @@ Mood: wistful, tender, reflective, slow, flowing
 BPM: ~70  ·  No vocals, no pop beat, no orchestral climax
 Mode: pentatonic yu  ·  Instruments: dry guqin, restrained xiao, guzheng, temple bell, stone chime`,
     rag: [
-      { score: 0.44, text: 'Bada Shanren, born a Ming prince, fused stark calligraphic brushwork with cryptic compositions as silent political dissent.' },
-      { score: 0.39, text: 'The Four Monks of early Qing painting (Bada, Shitao, Hongren, Kuncan) prized "simplicity" — fewer strokes carrying greater weight.' },
-      { score: 0.36, text: '"仿" inscriptions in late-period Bada works invite traditional reading while subverting it through eccentric proportions.' },
+      { score: 0.44, text: '八大山人原为明宗室，国破家亡后落发为僧——以孤峭书法笔意与隐晦构图，寄遗民无声之愤。' },
+      { score: 0.39, text: '清初"四僧"（八大、石涛、弘仁、髡残）尚"简"——笔愈省而意愈重，是对元人简笔传统之极致发挥。' },
+      { score: 0.36, text: '八大晚期题"仿"诸作，外承古法，内以奇崛比例颠覆传统格法——"仿"实为"反"。' },
     ],
   },
   {
@@ -111,9 +111,9 @@ Mode: pentatonic yu  ·  Instruments: dry guqin, restrained xiao, guzheng, templ
     tags: ['手卷', '巨幅', '北宗'],
     va: [-0.05, 0.45], audio: 'real_p1_va_pos.mp3',
     rag: [
-      { score: 0.46, text: 'Monumental northern Song hanging scrolls express cosmic principle through commanding axial mountain compositions.' },
-      { score: 0.41, text: 'Long handscrolls invite "可游" — a moving, unfolding pictorial journey across rivers, plateaus and human settlements.' },
-      { score: 0.38, text: 'Northern landscape masters Li Cheng, Fan Kuan and Guo Xi developed axe-cut texture strokes (斧劈皴) for sharp, rocky surfaces.' },
+      { score: 0.46, text: '北宋立轴以巍然中轴之山势喻天地之大序——主山堂堂、群峰拱卫，是为"巨碑式"构图。' },
+      { score: 0.41, text: '长卷以渐次展开之笔意，引观者于江河岗阜、村落聚邑间神游——是为"可游"之画。' },
+      { score: 0.38, text: '北宗山水大家李成、范宽、郭熙创斧劈皴，专写嶙峋石面之峻利——刀劈斧凿，气骨毕现。' },
     ],
   },
   {
@@ -124,9 +124,9 @@ Mode: pentatonic yu  ·  Instruments: dry guqin, restrained xiao, guzheng, templ
     tags: ['花鸟', '梅', '岁寒'],
     va: [-0.30, -0.42], audio: 'real_p5_va_neg.mp3',
     rag: [
-      { score: 0.40, text: 'Plum blossoms in winter symbolize moral integrity — beauty against adversity, a "junzi" emblem in literati art.' },
-      { score: 0.37, text: 'Ink plum, bamboo and orchid (四君子) became favored subjects of Yuan literati painters expressing eremitic ideals.' },
-      { score: 0.33, text: 'Sparse, calligraphic plum-blossom paintings let blank silk carry the loneliness of cold-season cultivation.' },
+      { score: 0.40, text: '寒梅犯雪而开，喻坚贞独立——于文人画中为"君子"之象，与岁寒之松、抱节之竹同列。' },
+      { score: 0.37, text: '墨梅、墨竹、墨兰（四君子）为元代文人写隐逸之志之常题——尚书法笔意，重气节之喻。' },
+      { score: 0.33, text: '疏笔写梅，留绢素之白以承岁寒孤抱——所谓"画在虚处，意在笔外"。' },
     ],
   },
   {
@@ -137,9 +137,9 @@ Mode: pentatonic yu  ·  Instruments: dry guqin, restrained xiao, guzheng, templ
     tags: ['雪景', '梅', '设色'],
     va: [0.12, -0.50], audio: 'gua4_bi.mp3',
     rag: [
-      { score: 0.39, text: 'Snow-and-plum compositions transform winter desolation into refined ornamental beauty in Ming literati flower painting.' },
-      { score: 0.35, text: 'White silk left bare becomes snow; ink defines branches; minimal color carries early-spring optimism.' },
-      { score: 0.32, text: 'Ming-dynasty bird-and-flower painting integrated Song precision with Yuan literati abstraction.' },
+      { score: 0.39, text: '明人雪梅图化冬月之萧索为雅丽之装饰——是文人花卉画之新格，雅俗共赏。' },
+      { score: 0.35, text: '留白即雪，墨线写枝，少许设色已能承早春寒中向暖之意——惜墨如金，得意忘形。' },
+      { score: 0.32, text: '明代花鸟兼宋人工致与元人逸笔，融两宋元三朝之长——是为"院体文人化"。' },
     ],
   },
 ];
