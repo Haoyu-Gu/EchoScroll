@@ -805,15 +805,19 @@ async function decodeWaveform(url) {
   }
 }
 
-// 首次用户交互前，loadAudio() 只挂 src，不发起 fetch/decode —— 避免首屏多拉 5 MB mp3。
+// 首次用户交互前，loadAudio() 只缓存 src，绝不写到 audioEl.src 也不 fetch
+// —— Chrome 在某些情况下即使 preload=none 也会因 audio.src= 触发拉取，
+//    所以彻底延迟到 markInteracted() 之后再设 src。
 let hasUserInteracted = false;
+let pendingSrc = null;
 async function loadAudio(src, autoplay = false) {
-  audioEl.src = src;
   if (!hasUserInteracted && !autoplay) {
-    // 仅记录 src，等用户首次点 ▶ 或切音频按钮时再真加载
+    // 仅暂存 src，等用户首次点 ▶ 或切音频按钮时再真加载
+    pendingSrc = src;
     timeEl.textContent = '0:00 / 0:00';
     return;
   }
+  audioEl.src = src;
   audioEl.load();
   if (autoplay) audioEl.play().catch(() => {});
   else { audioEl.pause(); }
@@ -826,11 +830,11 @@ async function loadAudio(src, autoplay = false) {
   buildBars(currentPeaks);
 }
 
-// 首次用户交互后激活真加载（覆盖 play 按钮 / audio-variants / V-A 圆环拖动）
+// 首次用户交互后激活真加载
 function markInteracted() {
   if (hasUserInteracted) return;
   hasUserInteracted = true;
-  if (audioEl.src) loadAudio(audioEl.src, false);
+  if (pendingSrc) loadAudio(pendingSrc, false);
 }
 
 function fmt(s) {
