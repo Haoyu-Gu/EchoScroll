@@ -450,7 +450,7 @@ PAINTINGS.forEach((p, i) => {
   const t = document.createElement('div');
   t.className = 'thumb' + (i === 1 ? ' active' : '');
   t.dataset.id = p.id;
-  t.innerHTML = `<img src="assets/paintings/${p.file}" alt="${p.titleEn}">`;
+  t.innerHTML = `<img src="assets/paintings/${p.file}" alt="${p.titleEn}" loading="lazy" decoding="async">`;
   t.addEventListener('click', () => selectPainting(p.id));
   thumbsEl.appendChild(t);
 });

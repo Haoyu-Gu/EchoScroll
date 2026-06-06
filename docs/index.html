@@ -88,10 +88,10 @@
           <span class="axis top"></span>
           <span class="axis bot"></span>
           <div class="painting-stack" id="hero-painting-stack">
-            <img class="active" data-pid="p1" src="assets/paintings/p1_miyouren_cloudy_mountains.jpg" alt="Mi Youren · Cloudy Mountains">
-            <img data-pid="p3" src="assets/paintings/p3_chenruyan_immortals.jpg" alt="Chen Ruyan · Mountains of the Immortals">
-            <img data-pid="p6" src="assets/paintings/p6_streams_mountains.jpg" alt="Streams and Mountains without End">
-            <img data-pid="p2" src="assets/paintings/p2_dujin_poet_lin_bu.jpg" alt="Du Jin · The Poet Lin Bu">
+            <img class="active" data-pid="p1" src="assets/paintings/p1_miyouren_cloudy_mountains.jpg" alt="Mi Youren · Cloudy Mountains" fetchpriority="high" decoding="async">
+            <img data-pid="p3" src="assets/paintings/p3_chenruyan_immortals.jpg" alt="Chen Ruyan · Mountains of the Immortals" fetchpriority="low" decoding="async" loading="lazy">
+            <img data-pid="p6" src="assets/paintings/p6_streams_mountains.jpg" alt="Streams and Mountains without End" fetchpriority="low" decoding="async" loading="lazy">
+            <img data-pid="p2" src="assets/paintings/p2_dujin_poet_lin_bu.jpg" alt="Du Jin · The Poet Lin Bu" fetchpriority="low" decoding="async" loading="lazy">
           </div>
           <div class="painting-caption">
             <span class="pc-title" id="hero-caption-title">云山图</span>
@@ -362,7 +362,7 @@
       <!-- LEFT · painting -->
       <div class="painting-panel">
         <div class="painting-frame" id="painting-frame">
-          <img id="painting-img" src="assets/paintings/p2_dujin_poet_lin_bu.jpg" alt="">
+          <img id="painting-img" src="assets/paintings/p2_dujin_poet_lin_bu.jpg" alt="" loading="lazy" decoding="async">
           <div class="seal-corner"><span>回</span><span>声</span></div>
         </div>
         <div class="painting-meta">
@@ -484,7 +484,7 @@
             <!-- Buttons populated dynamically per-painting by renderAudioVariants() -->
           </div>
           <div class="real-audio-note" id="real-audio-note" hidden></div>
-          <audio id="audio-el" preload="auto"></audio>
+          <audio id="audio-el" preload="none"></audio>
         </div>
 
         <div class="rag-card">
@@ -518,7 +518,7 @@
 
     <div class="case-banner fade-in">
       <div class="img-wrap" id="case-img-wrap">
-        <img src="assets/paintings/p2_dujin_poet_lin_bu.jpg" alt="The Poet Lin Bu Wandering in the Moonlight">
+        <img src="assets/paintings/p2_dujin_poet_lin_bu.jpg" alt="The Poet Lin Bu Wandering in the Moonlight" loading="lazy" decoding="async">
       </div>
       <div>
         <h3>林逋月夜行吟<br><span style="font-family:var(--serif-en);font-style:italic;font-weight:400;color:var(--ink-mid);font-size:24px;">The Poet Lin Bu Wandering in the Moonlight</span></h3>
