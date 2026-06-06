@@ -63,23 +63,23 @@
       </div>
 
       <div class="sample-row">
-        <span class="sample-label">或从示例画作开始</span>
+        <span class="sample-label">或从示例画作开始 · 周易卦象系列</span>
         <div class="sample-thumbs">
-          <button class="sample-thumb" data-pid="p1" title="米友仁 · 云山图">
-            <img src="../assets/paintings/p1_miyouren_cloudy_mountains.jpg" alt="">
-            <span class="st-cap">云山图</span>
+          <button class="sample-thumb" data-pid="g1" title="师卦 · 容民畜众">
+            <img src="../assets/paintings/gua1_shi.jpg" alt="">
+            <span class="st-cap">师卦</span>
           </button>
-          <button class="sample-thumb" data-pid="p2" title="杜堇 · 林逋月夜行吟">
-            <img src="../assets/paintings/p2_dujin_poet_lin_bu.jpg" alt="">
-            <span class="st-cap">林逋月夜</span>
+          <button class="sample-thumb" data-pid="g2" title="需卦 · 光亨">
+            <img src="../assets/paintings/gua2_xu.jpg" alt="">
+            <span class="st-cap">需卦</span>
           </button>
-          <button class="sample-thumb" data-pid="p5" title="八大山人 · 仿郭忠恕山水">
-            <img src="../assets/paintings/p5_bada_landscape.jpg" alt="">
-            <span class="st-cap">八大山人</span>
+          <button class="sample-thumb" data-pid="g3" title="讼卦 · 作事谋始">
+            <img src="../assets/paintings/gua3_song.jpg" alt="">
+            <span class="st-cap">讼卦</span>
           </button>
-          <button class="sample-thumb" data-pid="p6" title="佚名 · 溪山无尽图">
-            <img src="../assets/paintings/p6_streams_mountains.jpg" alt="">
-            <span class="st-cap">溪山无尽</span>
+          <button class="sample-thumb" data-pid="g4" title="比卦 · 建国亲诸侯">
+            <img src="../assets/paintings/gua4_bi.jpg" alt="">
+            <span class="st-cap">比卦</span>
           </button>
         </div>
       </div>
@@ -103,25 +103,9 @@
 
       <!-- 画作铺满中间 -->
       <div class="painting-wrap">
-        <img id="edit-painting" src="../assets/paintings/p2_dujin_poet_lin_bu.jpg" alt="">
+        <img id="edit-painting" src="../assets/paintings/gua1_shi.jpg" alt="">
 
-        <!-- 故宫风同心圆标记点 — 4 个示例 hotspot -->
-        <button class="marker" style="top: 42%; left: 28%;"
-                data-title="月光下的诗人" data-v="+0.20" data-a="-0.10"
-                data-note="林逋独行夜咏梅。月光与衣袂柔和，引出 xiao 主奏的 tender 子句。"
-                aria-label="标记点 · 月光下的诗人"><span class="m-pulse"></span></button>
-        <button class="marker" style="top: 67%; left: 58%;"
-                data-title="寒梅初绽" data-v="-0.05" data-a="-0.42"
-                data-note="梅枝寂静；arousal 下降，触发 0.4× BPM 与 pp 力度。"
-                aria-label="标记点 · 寒梅初绽"><span class="m-pulse"></span></button>
-        <button class="marker" style="top: 32%; left: 72%;"
-                data-title="远山轮廓" data-v="-0.28" data-a="-0.35"
-                data-note="远山如黛 — 引入低音 guqin 和 stone-chime 点缀。"
-                aria-label="标记点 · 远山"><span class="m-pulse"></span></button>
-        <button class="marker" style="top: 78%; left: 22%;"
-                data-title="脚边小径" data-v="+0.05" data-a="-0.20"
-                data-note="路径暗示行走的节奏，给出 60 BPM 的稳定基础。"
-                aria-label="标记点 · 小径"><span class="m-pulse"></span></button>
+        <!-- markers 由 app.js loadEdit() 按当前画作动态注入 -->
 
         <!-- 故宫风注释面板 -->
         <div class="annotation" id="annotation" hidden>
@@ -177,13 +161,10 @@
       <!-- 左侧：画作展示区（画轴右置）-->
       <div class="output-canvas" id="output-canvas">
         <div class="oc-painting">
-          <img id="output-painting" src="../assets/paintings/p2_dujin_poet_lin_bu.jpg" alt="">
+          <img id="output-painting" src="../assets/paintings/gua1_shi.jpg" alt="">
           <!-- 编辑层（标记点叠加）-->
           <div class="oc-edit-layer" id="oc-edit-layer">
-            <span class="oc-marker" style="top: 42%; left: 28%;"></span>
-            <span class="oc-marker" style="top: 67%; left: 58%;"></span>
-            <span class="oc-marker" style="top: 32%; left: 72%;"></span>
-            <span class="oc-marker" style="top: 78%; left: 22%;"></span>
+            <!-- oc-markers 由 app.js prepareOutput() 按当前画作动态注入 -->
           </div>
         </div>
         <!-- 画轴右置 -->

@@ -438,10 +438,12 @@ a { color: inherit; text-decoration: none; }
 .stage-edit.revealed .curtain.right { transform: translateX(100%); }
 
 /* 画作区 */
+/* 画作区 — inline-block 让 wrap 跟画作 1:1，markers 才能正确叠在画上 */
 .painting-wrap {
   position: relative;
-  width: min(72vw, 1080px);
-  max-height: 100%;
+  display: inline-block;
+  max-width: 72vw;
+  max-height: 64vh;
   z-index: 2;
   background: #fff;
   border: 1px solid rgba(31,93,114,0.16);
@@ -450,12 +452,15 @@ a { color: inherit; text-decoration: none; }
     0 1px 0 rgba(255,255,255,0.6) inset,
     0 32px 64px rgba(15,26,29,0.20),
     0 6px 18px rgba(15,26,29,0.10);
+  line-height: 0;
+  vertical-align: middle;
 }
 .painting-wrap img {
-  width: 100%;
-  max-height: 64vh;
-  object-fit: contain;
   display: block;
+  max-width: 72vw;
+  max-height: 64vh;
+  width: auto;
+  height: auto;
 }
 
 /* 同心圆标记点 (marker) */

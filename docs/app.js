@@ -43,7 +43,7 @@ Mode: pentatonic yu  ·  Instruments: guqin, xiao, dizi, pipa, light percussion`
     artist: 'Du Jin · 杜堇 (1446–c. 1519)',
     dynasty: '明 · Ming', dynKey: '明',
     tags: ['人物', '设色', '故事画'],
-    va: [-0.03, 0.11], audio: 'main_p2_lin_bu_8s.wav',
+    va: [-0.03, 0.11], audio: 'gua4_bi.mp3',
     rag: [
       { score: 0.35, text: 'Landscape with goats. Late Ming dynasty. Hanging scroll; ink and color on silk.' },
       { score: 0.33, text: 'Du Jin specialized in figure painting that animated Song literati anecdotes within Ming aesthetic conventions.' },
@@ -56,7 +56,7 @@ Mode: pentatonic yu  ·  Instruments: guqin, xiao, dizi, pipa, light percussion`
     artist: 'Chen Ruyan · 陈汝言 (c. 1331–1371)',
     dynasty: '元 · Yuan', dynKey: '元',
     tags: ['青绿山水', '神仙', '元代'],
-    va: [0.35, -0.05], audio: 'm4_mock_literati_10s.wav',
+    va: [0.35, -0.05], audio: 'gua2_xu.mp3',
     rag: [
       { score: 0.38, text: 'Yuan literati painters fused Daoist immortal-realm imagery with elevated, archaic blue-green palette to express otherworldly ideals.' },
       { score: 0.34, text: 'Chen Ruyan, a Yuan Four Masters circle painter, treats brushwork as scholarly self-expression rather than mere depiction.' },
@@ -69,7 +69,7 @@ Mode: pentatonic yu  ·  Instruments: guqin, xiao, dizi, pipa, light percussion`
     artist: 'Juran · 巨然 (active 960–985)',
     dynasty: '北宋 · Northern Song', dynKey: '北宋',
     tags: ['山水', '寺庙', '苍润'],
-    va: [-0.36, -0.34], audio: 'm5_bpm_slow.wav',
+    va: [-0.36, -0.34], audio: 'gua1_shi.mp3',
     rag: [
       { score: 0.41, text: 'Juran continued Dong Yuan\'s southern-school lineage, characterized by long hemp-fiber texture strokes and dense vegetation.' },
       { score: 0.37, text: 'Buddhist mountain retreats in early Northern Song painting figure renunciation; monumental compositions express cosmic order.' },
@@ -109,7 +109,7 @@ Mode: pentatonic yu  ·  Instruments: dry guqin, restrained xiao, guzheng, templ
     artist: 'Anonymous · 佚名',
     dynasty: '北宋-金 · N. Song to Jin', dynKey: '北宋',
     tags: ['手卷', '巨幅', '北宗'],
-    va: [-0.05, 0.45], audio: 'm5_bpm_fast.wav',
+    va: [-0.05, 0.45], audio: 'real_p1_va_pos.mp3',
     rag: [
       { score: 0.46, text: 'Monumental northern Song hanging scrolls express cosmic principle through commanding axial mountain compositions.' },
       { score: 0.41, text: 'Long handscrolls invite "可游" — a moving, unfolding pictorial journey across rivers, plateaus and human settlements.' },
@@ -122,7 +122,7 @@ Mode: pentatonic yu  ·  Instruments: dry guqin, restrained xiao, guzheng, templ
     artist: 'Ni Jing · 倪静',
     dynasty: '元-明 · Yuan-Ming', dynKey: '元',
     tags: ['花鸟', '梅', '岁寒'],
-    va: [-0.30, -0.42], audio: 'm5_bpm_slow.wav',
+    va: [-0.30, -0.42], audio: 'real_p5_va_neg.mp3',
     rag: [
       { score: 0.40, text: 'Plum blossoms in winter symbolize moral integrity — beauty against adversity, a "junzi" emblem in literati art.' },
       { score: 0.37, text: 'Ink plum, bamboo and orchid (四君子) became favored subjects of Yuan literati painters expressing eremitic ideals.' },
@@ -135,7 +135,7 @@ Mode: pentatonic yu  ·  Instruments: dry guqin, restrained xiao, guzheng, templ
     artist: 'Liu Shiru · 刘世儒',
     dynasty: '明 · Ming', dynKey: '明',
     tags: ['雪景', '梅', '设色'],
-    va: [0.12, -0.50], audio: 'main_p2_lin_bu_8s.wav',
+    va: [0.12, -0.50], audio: 'gua4_bi.mp3',
     rag: [
       { score: 0.39, text: 'Snow-and-plum compositions transform winter desolation into refined ornamental beauty in Ming literati flower painting.' },
       { score: 0.35, text: 'White silk left bare becomes snow; ink defines branches; minimal color carries early-spring optimism.' },
@@ -276,13 +276,16 @@ const MODULES = [
 ];
 
 // Audio variants available for V-A driven swap
+// AUDIO_BANK · 全部真音乐（无任何 mock / 合成）
 const AUDIO_BANK = [
-  { file: 'main_p2_lin_bu_8s.wav',         va: [0.0, 0.1],    label: '原版' },
-  { file: 'main_p2_lin_bu_slow_12s.wav',   va: [-0.2, -0.5],  label: 'M5 拉慢' },
-  { file: 'm5_bpm_slow.wav',               va: [-0.3, -0.65], label: '×0.5 BPM' },
-  { file: 'm5_bpm_fast.wav',               va: [0.0, 0.6],    label: '×1.5 BPM' },
-  { file: 'm5_segment_replace.wav',        va: [-0.4, 0.3],   label: '段位替换' },
-  { file: 'm4_mock_literati_10s.wav',      va: [0.3, -0.1],   label: '文人意象' },
+  { file: 'gua1_shi.mp3',         va: [-0.10, -0.40], label: '师卦·沉聚' },
+  { file: 'gua2_xu.mp3',          va: [+0.45, +0.25], label: '需卦·明展' },
+  { file: 'gua3_song.mp3',        va: [-0.50, +0.55], label: '讼卦·躁争' },
+  { file: 'gua4_bi.mp3',          va: [+0.25, -0.10], label: '比卦·温润' },
+  { file: 'real_p1_va_neg.mp3',   va: [-0.22, -0.55], label: '云山图·沉' },
+  { file: 'real_p1_va_pos.mp3',   va: [+0.30, +0.50], label: '云山图·明' },
+  { file: 'real_p5_va_neg.mp3',   va: [-0.42, +0.18], label: '八大山人·孤' },
+  { file: 'real_p5_va_pos.mp3',   va: [+0.40, +0.40], label: '八大山人·达' },
 ];
 
 // ============================================================================
@@ -696,70 +699,16 @@ function ensureCtx() {
   if (audioCtx.state === 'suspended') audioCtx.resume();
 }
 
-function startTone() {
-  ensureCtx();
-  if (toneActive) return;
-  toneActive = true;
-  const [v, a] = currentVA;
-  const baseHz = 196 * Math.pow(2, ((v + 1) * 0.5) * Math.log2(523 / 196));
-  const modRate = 0.5 + (a + 1) * 1.25;
+// V-A 拖动实时反馈：旧版用 Oscillator 合成 sine（被诟病为"杂音"），
+// 已改为 no-op；拖动只更新 UI / 描述符，松手后切换真音乐 mp3 。
+function startTone()         { /* no-op — 不合成 sine */ }
+function updateTone(_v, _a)  { /* no-op */ }
+function stopTone(_fade)     { /* no-op */ }
 
-  osc1 = audioCtx.createOscillator(); osc1.type = 'sine'; osc1.frequency.value = baseHz;
-  osc2 = audioCtx.createOscillator(); osc2.type = 'sine'; osc2.frequency.value = baseHz * 1.5;
-  gainNode = audioCtx.createGain(); gainNode.gain.value = 0;
-
-  vibrato = audioCtx.createOscillator(); vibrato.type = 'sine'; vibrato.frequency.value = 5;
-  vibratoGain = audioCtx.createGain(); vibratoGain.gain.value = baseHz * 0.01;
-  vibrato.connect(vibratoGain); vibratoGain.connect(osc1.frequency); vibratoGain.connect(osc2.frequency);
-
-  lfo = audioCtx.createOscillator(); lfo.type = 'sine'; lfo.frequency.value = modRate;
-  lfoGain = audioCtx.createGain(); lfoGain.gain.value = 0.5 * (0.25 + 0.35 * ((a + 1) * 0.5));
-  const base = audioCtx.createGain(); base.gain.value = 0.5 - lfoGain.gain.value;
-  lfo.connect(lfoGain); lfoGain.connect(gainNode.gain); base.connect(gainNode.gain);
-
-  const mix = audioCtx.createGain(); mix.gain.value = 0.22;
-  const osc1Gain = audioCtx.createGain(); osc1Gain.gain.value = 0.7;
-  const osc2Gain = audioCtx.createGain(); osc2Gain.gain.value = 0.3 + 0.2 * v;
-  osc1.connect(osc1Gain).connect(mix);
-  osc2.connect(osc2Gain).connect(mix);
-  mix.connect(gainNode).connect(audioCtx.destination);
-
-  const now = audioCtx.currentTime;
-  gainNode.gain.cancelScheduledValues(now);
-  gainNode.gain.setValueAtTime(0, now);
-  gainNode.gain.linearRampToValueAtTime(1, now + 0.08);
-
-  osc1.start(); osc2.start(); vibrato.start(); lfo.start();
-}
-
-function updateTone(v, a) {
-  if (!toneActive || !audioCtx) return;
-  const baseHz = 196 * Math.pow(2, ((v + 1) * 0.5) * Math.log2(523 / 196));
-  const modRate = 0.5 + (a + 1) * 1.25;
-  const now = audioCtx.currentTime;
-  osc1.frequency.linearRampToValueAtTime(baseHz, now + 0.06);
-  osc2.frequency.linearRampToValueAtTime(baseHz * 1.5, now + 0.06);
-  lfo.frequency.linearRampToValueAtTime(modRate, now + 0.1);
-  vibratoGain.gain.linearRampToValueAtTime(baseHz * 0.01, now + 0.06);
-  lfoGain.gain.linearRampToValueAtTime(0.5 * (0.25 + 0.35 * ((a + 1) * 0.5)), now + 0.1);
-}
-
-function stopTone(fade = false) {
-  if (!toneActive || !audioCtx) return;
-  toneActive = false;
-  const now = audioCtx.currentTime;
-  gainNode.gain.cancelScheduledValues(now);
-  gainNode.gain.setValueAtTime(gainNode.gain.value, now);
-  gainNode.gain.linearRampToValueAtTime(0, now + (fade ? 0.18 : 0.04));
-  setTimeout(() => {
-    try { osc1.stop(); osc2.stop(); vibrato.stop(); lfo.stop(); } catch {}
-  }, fade ? 200 : 60);
-}
-
+// 预览按钮：直接播放当前选中的真音乐变体（不再合成 sine）
 $('#btn-preview').addEventListener('click', () => {
-  if (toneActive) { stopTone(true); return; }
-  startTone();
-  setTimeout(() => { if (toneActive) stopTone(true); }, 2200);
+  const active = $('.audio-variants button.active');
+  if (active) loadAudio(active.dataset.audio, true);
 });
 
 $('#btn-regen').addEventListener('click', () => {

@@ -10,45 +10,68 @@ const $  = (s, p = document) => p.querySelector(s);
 const $$ = (s, p = document) => Array.from(p.querySelectorAll(s));
 
 // ============================================================================
-// Data : 4 sample paintings
+// Data : 4 sample paintings — 周易卦象系列 · 真音乐 (no synthetic)
 // ============================================================================
 const PAINTINGS = {
-  p1: {
-    file: '../assets/paintings/p1_miyouren_cloudy_mountains.jpg',
-    title: '云山图', artist: 'Mi Youren · 米友仁', dynasty: '南宋',
-    audio: '../assets/audio/real_p1_va_neg.mp3',
-    va: [-0.22, -0.55],
-    params: { mode: 'pentatonic 羽', instrument: 'guqin + xiao', bpm: '≈ 50', dyn: 'pp ~ p' },
-    suggestedTags: ['宁静', '悠远', '隐逸'],
+  g1: {
+    file: '../assets/paintings/gua1_shi.jpg',
+    title: '师卦 · 容民畜众', subtitle: '第七卦 · 地水师',
+    artist: '《周易》六十四卦系列', dynasty: '现代水墨',
+    audio: '../assets/audio/gua1_shi.mp3',
+    va: [-0.10, -0.40],
+    params: { mode: 'pentatonic 商', instrument: '笙 + 埙 + 低音堂鼓', bpm: '62', dyn: 'p ~ mp' },
+    suggestedTags: ['隐逸', '悠远', '水面'],
+    markers: [
+      { top: '22%', left: '40%', title: '远山笼水汽', v: -0.20, a: -0.30, note: '云气笼罩的远山——埙的低音持续动机自此涌起，对应"水藏地中"。' },
+      { top: '70%', left: '58%', title: '网格鱼塘', v: -0.10, a: -0.20, note: '格状田畴是"容民畜众"的视觉化——笙的层叠和声从此展开。' },
+      { top: '86%', left: '28%', title: '深墨坡岸', v: -0.30, a: -0.40, note: '前景压底的浓墨坡岸——低音堂鼓如心跳般克制脉动。' },
+    ],
   },
-  p2: {
-    file: '../assets/paintings/p2_dujin_poet_lin_bu.jpg',
-    title: '林逋月夜行吟', artist: 'Du Jin · 杜堇', dynasty: '明',
-    audio: '../assets/audio/real_p5_va_neg.mp3',
-    va: [-0.03, 0.11],
-    params: { mode: 'pentatonic 宫', instrument: 'guqin + xiao', bpm: '≈ 60', dyn: 'p ~ mp' },
-    suggestedTags: ['宁静', '空灵'],
+  g2: {
+    file: '../assets/paintings/gua2_xu.jpg',
+    title: '需卦 · 光亨', subtitle: '第五卦 · 水天需',
+    artist: '《周易》六十四卦系列', dynasty: '现代水墨',
+    audio: '../assets/audio/gua2_xu.mp3',
+    va: [+0.45, +0.25],
+    params: { mode: 'pentatonic 徵', instrument: '竹笛 + 古筝刮奏 + 琵琶', bpm: '72', dyn: 'mp ~ mf' },
+    suggestedTags: ['空灵', '悠远', '宁静'],
+    markers: [
+      { top: '30%', left: '60%', title: '喷发霞光', v: +0.55, a: +0.50, note: '暖黄赭红的放射状霞光——古筝大刮奏从低到高一路扫开。' },
+      { top: '58%', left: '32%', title: '深墨群山', v: +0.10, a: +0.10, note: '黑暗山影积蓄光气——竹笛一句句试探着上扬。' },
+      { top: '82%', left: '50%', title: '山影倒映', v: +0.25, a: -0.10, note: '静水中的倒影——二胡 + 碰铃的从容中段，"饮食宴乐"。' },
+    ],
   },
-  p5: {
-    file: '../assets/paintings/p5_bada_landscape.jpg',
-    title: '仿郭忠恕山水', artist: 'Bada Shanren · 八大山人', dynasty: '清',
-    audio: '../assets/audio/real_p5_va_neg.mp3',
-    va: [-0.42, 0.18],
-    params: { mode: 'pentatonic 羽', instrument: 'guqin solo + 古筝', bpm: '≈ 70', dyn: 'p' },
-    suggestedTags: ['隐逸', '空灵', '悠远'],
+  g3: {
+    file: '../assets/paintings/gua3_song.jpg',
+    title: '讼卦 · 作事谋始', subtitle: '第六卦 · 天水讼',
+    artist: '《周易》六十四卦系列', dynasty: '现代水墨',
+    audio: '../assets/audio/gua3_song.mp3',
+    va: [-0.50, +0.55],
+    params: { mode: 'pentatonic 羽', instrument: '二胡 + 板鼓梆子 + 京胡', bpm: '88', dyn: 'mf ~ f' },
+    suggestedTags: ['喧嚣'],
+    markers: [
+      { top: '22%', left: '52%', title: '翻卷乱云', v: -0.40, a: +0.55, note: '天上盘旋绞缠的乱云——板鼓梆子的躁动节奏自此起。' },
+      { top: '72%', left: '45%', title: '对冲水纹', v: -0.50, a: +0.50, note: '斜冲交错的浓墨水势——古筝急促轮拨模拟冲突。' },
+    ],
   },
-  p6: {
-    file: '../assets/paintings/p6_streams_mountains.jpg',
-    title: '溪山无尽图', artist: 'Anonymous · 佚名', dynasty: '北宋-金',
-    audio: '../assets/audio/real_p1_va_pos.mp3',
-    va: [-0.05, 0.45],
-    params: { mode: 'pentatonic 徵', instrument: 'erhu + guzheng + 鼓', bpm: '≈ 84', dyn: 'mf ~ f' },
-    suggestedTags: ['喧嚣', '悠远'],
+  g4: {
+    file: '../assets/paintings/gua4_bi.jpg',
+    title: '比卦 · 建国亲诸侯', subtitle: '第八卦 · 水地比',
+    artist: '《周易》六十四卦系列', dynasty: '现代水墨',
+    audio: '../assets/audio/gua4_bi.mp3',
+    va: [+0.25, -0.10],
+    params: { mode: 'pentatonic 宫', instrument: '古琴 + 古筝 + 箫 + 笙', bpm: '68', dyn: 'p ~ mp' },
+    suggestedTags: ['宁静', '悠远', '水面'],
+    markers: [
+      { top: '20%', left: '40%', title: '远山青翠', v: +0.20, a: -0.05, note: '层叠的远山——箫吹出温润亲和的主题，"亲辅"的和睦。' },
+      { top: '55%', left: '52%', title: '水脉交织', v: +0.25, a: -0.10, note: '蜿蜒贯通的水网——古琴 / 古筝流水滚奏连绵不绝。' },
+      { top: '78%', left: '62%', title: '青绿洲渚', v: +0.30, a: -0.15, note: '错落相邻的青绿洲渚——笙的暖和声渐入，"建国亲诸侯"。' },
+    ],
   },
 };
 
-let currentPid = 'p2';
-const SELECTED_TAGS = new Set(['宁静']);
+let currentPid = 'g1';
+const SELECTED_TAGS = new Set(['隐逸']);
 
 // ============================================================================
 // Stage navigation
@@ -161,7 +184,27 @@ function loadEdit(pid) {
   if (!p) return;
   $('#edit-painting').src = p.file;
   $('#annotation').hidden = true;
-  $$('.marker').forEach(m => m.classList.remove('active'));
+
+  // 动态渲染标记点（每张画自带 markers）
+  const wrap = $('.painting-wrap');
+  $$('.marker', wrap).forEach(m => m.remove());
+  const ann = $('#annotation');
+  (p.markers || []).forEach((m) => {
+    const btn = document.createElement('button');
+    btn.className = 'marker';
+    btn.style.top = m.top;
+    btn.style.left = m.left;
+    btn.dataset.title = m.title;
+    btn.dataset.v = (m.v >= 0 ? '+' : '') + m.v.toFixed(2);
+    btn.dataset.a = (m.a >= 0 ? '+' : '') + m.a.toFixed(2);
+    btn.dataset.note = m.note;
+    btn.setAttribute('aria-label', '标记点 · ' + m.title);
+    const pulse = document.createElement('span');
+    pulse.className = 'm-pulse';
+    btn.appendChild(pulse);
+    wrap.insertBefore(btn, ann);
+  });
+
   SELECTED_TAGS.clear();
   (p.suggestedTags || []).forEach(t => SELECTED_TAGS.add(t));
   refreshTagButtons();
@@ -173,22 +216,23 @@ const annV = $('#ann-v');
 const annA = $('#ann-a');
 const annNote = $('#ann-note');
 
-$$('.marker').forEach(m => {
-  m.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const isActive = m.classList.contains('active');
-    $$('.marker').forEach(x => x.classList.remove('active'));
-    if (isActive) {
-      annotation.hidden = true;
-      return;
-    }
-    m.classList.add('active');
-    annTitle.textContent = m.dataset.title || '画上标注';
-    annV.textContent = m.dataset.v || '+0.00';
-    annA.textContent = m.dataset.a || '+0.00';
-    annNote.textContent = m.dataset.note || '';
-    annotation.hidden = false;
-  });
+// 标记点：用事件代理（markers 是动态生成的）
+$('.painting-wrap').addEventListener('click', (e) => {
+  const m = e.target.closest('.marker');
+  if (!m) return;
+  e.stopPropagation();
+  const isActive = m.classList.contains('active');
+  $$('.marker').forEach(x => x.classList.remove('active'));
+  if (isActive) {
+    annotation.hidden = true;
+    return;
+  }
+  m.classList.add('active');
+  annTitle.textContent = m.dataset.title || '画上标注';
+  annV.textContent = m.dataset.v || '+0.00';
+  annA.textContent = m.dataset.a || '+0.00';
+  annNote.textContent = m.dataset.note || '';
+  annotation.hidden = false;
 });
 $('#ann-close').addEventListener('click', () => {
   annotation.hidden = true;
@@ -245,6 +289,16 @@ function prepareOutput(pid) {
   audioEl.load();
   resetPlayer();
   pcVa.textContent = `${p.va[0].toFixed(2)}  ·  ${p.va[1].toFixed(2)}`;
+
+  // 注入编辑层 oc-markers (按画作 markers 的位置)
+  ocEditLayer.innerHTML = '';
+  (p.markers || []).forEach(m => {
+    const span = document.createElement('span');
+    span.className = 'oc-marker';
+    span.style.top = m.top;
+    span.style.left = m.left;
+    ocEditLayer.appendChild(span);
+  });
   const rows = $$('.pc-row strong', $('#param-card'));
   if (rows.length >= 4) {
     rows[0].textContent = p.params.mode;
