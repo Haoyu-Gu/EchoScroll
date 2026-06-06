@@ -1072,11 +1072,14 @@ const concertPin = $('#concert-pin');
 const concertAudio = $('#concert-audio');
 const concertImgStack = $('#concert-img-stack');
 
-// Build concert image stack
+// Build concert image stack — defer real src= to first Concert open so
+// that 8 atlas paintings don't get fetched on initial page load.
 PAINTINGS.forEach((p, i) => {
   const img = document.createElement('img');
-  img.src = `assets/paintings/${p.file}`;
+  img.dataset.deferSrc = `assets/paintings/${p.file}`;
   img.alt = p.title;
+  img.loading = 'lazy';
+  img.decoding = 'async';
   img.style.position = 'absolute';
   img.style.inset = '0';
   img.style.width = '100%';
@@ -1088,6 +1091,11 @@ PAINTINGS.forEach((p, i) => {
   img.classList.add('concert-img');
   concertImgStack.appendChild(img);
 });
+function hydrateConcertImages() {
+  $$('.concert-img').forEach(img => {
+    if (img.dataset.deferSrc && !img.src) img.src = img.dataset.deferSrc;
+  });
+}
 
 let concertTimer = null;
 let concertStep = 0;
@@ -1127,6 +1135,7 @@ function startConcert() {
   audioEl.pause(); playBtn.classList.remove('playing');
   concertOverlay.classList.add('open');
   document.body.style.overflow = 'hidden';
+  hydrateConcertImages();  // lazy-load 8 paintings on first open (not at page init)
   concertStep = 0;
   concertSetStep(0);
   concertTimer = setInterval(() => {
