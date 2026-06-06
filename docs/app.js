@@ -645,6 +645,7 @@ function clientToVA(clientX, clientY) {
 function startDrag(e) {
   dragging = true;
   svg.classList.add('dragging');
+  markInteracted();
   startTone();
   moveDrag(e);
 }
@@ -804,19 +805,32 @@ async function decodeWaveform(url) {
   }
 }
 
+// 首次用户交互前，loadAudio() 只挂 src，不发起 fetch/decode —— 避免首屏多拉 5 MB mp3。
+let hasUserInteracted = false;
 async function loadAudio(src, autoplay = false) {
   audioEl.src = src;
+  if (!hasUserInteracted && !autoplay) {
+    // 仅记录 src，等用户首次点 ▶ 或切音频按钮时再真加载
+    timeEl.textContent = '0:00 / 0:00';
+    return;
+  }
   audioEl.load();
   if (autoplay) audioEl.play().catch(() => {});
   else { audioEl.pause(); }
   playBtn.classList.toggle('playing', autoplay);
   updateWaveform(0);
   timeEl.textContent = '0:00 / 0:00';
-  // load real peaks
   wfEl.classList.add('wf-loading');
   currentPeaks = await decodeWaveform(src);
   wfEl.classList.remove('wf-loading');
   buildBars(currentPeaks);
+}
+
+// 首次用户交互后激活真加载（覆盖 play 按钮 / audio-variants / V-A 圆环拖动）
+function markInteracted() {
+  if (hasUserInteracted) return;
+  hasUserInteracted = true;
+  if (audioEl.src) loadAudio(audioEl.src, false);
 }
 
 function fmt(s) {
@@ -848,11 +862,13 @@ audioEl.addEventListener('ended', () => {
 
 playBtn.addEventListener('click', () => {
   ensureCtx();
+  markInteracted();
   if (audioEl.paused) { audioEl.play().catch(() => {}); playBtn.classList.add('playing'); }
   else { audioEl.pause(); playBtn.classList.remove('playing'); }
 });
 
 wfEl.addEventListener('click', (e) => {
+  markInteracted();
   if (!audioEl.duration) return;
   const rect = wfEl.getBoundingClientRect();
   audioEl.currentTime = ((e.clientX - rect.left) / rect.width) * audioEl.duration;
@@ -862,6 +878,7 @@ wfEl.addEventListener('click', (e) => {
 $('.audio-variants')?.addEventListener('click', (e) => {
   const b = e.target.closest('button[data-audio]');
   if (!b) return;
+  markInteracted();
   $$('.audio-variants button').forEach(x => x.classList.remove('active'));
   b.classList.add('active');
   loadAudio(b.dataset.audio, true);
